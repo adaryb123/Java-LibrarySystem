@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerWindow">
+    <children>
+        <BorderPane fx:id="BorderPaneContent" prefHeight="700.0" prefWidth="1000.0">
+            <top>
+                <HBox fx:id="HBoxHeader" alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1000.0" spacing="20.0">
+                    <children>
+                        <ImageView fitHeight="51.0" fitWidth="128.0" onMouseReleased="#ButtonHomeOnAction" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/homebutton.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                    <effect>
+                        <ColorAdjust />
+                    </effect>
+                </HBox>
+            </top>
+        </BorderPane>
+    </children>
+</AnchorPane>

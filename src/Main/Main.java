@@ -1,6 +1,5 @@
 package Main;
 
-import Controller.WindowReference;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,10 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/View/Window.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/LoginScreen.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        WindowReference.getParentController().switchToMain();
+        //LibrarianWindowReference.getParentController().switchToMain();
     }
 
 

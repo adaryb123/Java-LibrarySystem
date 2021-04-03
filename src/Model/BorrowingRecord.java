@@ -6,12 +6,12 @@ import java.util.ArrayList;
  *    Record: Which user , borrowed which books, when.
  *    When the books are retrieved, this record will be deleted?
  */
-public class BorrowmentRecord {
+public class BorrowingRecord {
     private String date;
     private Reader reader;
     private ArrayList<BookCopy> books;
 
-    public BorrowmentRecord(String date, Reader reader, ArrayList<BookCopy> books) {
+    public BorrowingRecord(String date, Reader reader, ArrayList<BookCopy> books) {
         this.date = date;
         this.reader = reader;
         this.books = books;

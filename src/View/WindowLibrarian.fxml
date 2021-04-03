@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ControllerWindowLibrarian">
+    <children>
+        <BorderPane fx:id="BorderPaneContent" prefHeight="700.0" prefWidth="1000.0">
+            <top>
+                <HBox fx:id="HBoxHeader" alignment="CENTER_LEFT" prefHeight="132.0" prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #0dbfaa;">
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                    <effect>
+                        <ColorAdjust />
+                    </effect>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#switchSceneToBorrowings" prefHeight="81.0" prefWidth="158.0" text="Borrowments">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" onAction="#switchSceneToReadersCards" prefHeight="81.0" prefWidth="158.0" text="Reader's cards">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#switchSceneToBrowseBooks" prefHeight="81.0" prefWidth="158.0" text="Browse books">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#logOut" prefHeight="81.0" prefWidth="158.0" text="Log out">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+                </HBox>
+            </top>
+        </BorderPane>
+    </children>
+</AnchorPane>

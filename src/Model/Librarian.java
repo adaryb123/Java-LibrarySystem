@@ -1,7 +1,7 @@
 package Model;
 
 /**
- *  Main user of the app. Can register readers, create and remove borrowment records, browse books
+ *  Main user of the app. Can register readers, create and remove borrowing records, browse books
  */
 public class Librarian {
     private String username;

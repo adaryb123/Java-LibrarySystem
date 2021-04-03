@@ -1,8 +1,12 @@
 package Controller;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import Main.Main;
+import javafx.stage.Stage;
 
 /**
  * this class is based on code from https://www.youtube.com/watch?v=5yQbt6lYRqk
@@ -21,6 +25,22 @@ public class SceneManager {
         }
         return fxmlLoader;
     }
+
+    public static FXMLLoader switchScene(javafx.event.ActionEvent actionEvent, String fileName) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/" + fileName + ".fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Scene fxmlScene = new Scene(root);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setScene(fxmlScene);
+            window.show();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return fxmlLoader;
+    }
+	
 
    /* public static FXMLLoader switchListingPane(Pane parentPane, String fileName){
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource( "/View/" + fileName + ".fxml"));

@@ -1,7 +1,7 @@
 package Controller;
 
 
-public class ControllerSceneMain {
+public class ControllerSceneBorrowings {
 
     public void init() {
     }

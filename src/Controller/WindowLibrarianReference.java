@@ -5,16 +5,16 @@ package Controller;
  */
 public class WindowLibrarianReference {
 
-    public static ControllerWindowLibrarian parentController;
+    public static LibrarianController parentController;
 
     private WindowLibrarianReference() {
     }
 
-    public static ControllerWindowLibrarian getParentController() {
+    public static LibrarianController getParentController() {
         return parentController;
     }
 
-    public static void setParentController(ControllerWindowLibrarian parentController) {
+    public static void setParentController(LibrarianController parentController) {
         WindowLibrarianReference.parentController = parentController;
     }
 }

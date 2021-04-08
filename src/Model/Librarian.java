@@ -1,9 +1,11 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  *  Main user of the app. Can register readers, create and remove borrowing records, browse books
  */
-public class Librarian {
+public class Librarian implements Serializable {
     private String username;
     private String password;
 

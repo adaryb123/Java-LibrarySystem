@@ -1,4 +1,5 @@
 package Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,10 +14,9 @@ import javafx.stage.Stage;
  * It loads the .fxml file of new scene/object when switching between scenes
  */
 public class SceneManager {
-
     public static FXMLLoader switchBorderPane(BorderPane parentPane, String fileName){
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource( "/View/" + fileName + ".fxml"));
-        try{
+        try {
             Pane childPane = fxmlLoader.load();
             parentPane.setCenter(childPane);
         }
@@ -26,7 +26,8 @@ public class SceneManager {
         return fxmlLoader;
     }
 
-    public static FXMLLoader switchScene(javafx.event.ActionEvent actionEvent, String fileName) {
+    public static void switchScene(ActionEvent actionEvent, String fileName) {
+        // NOTE: Use loggers instead of sout in exceptions
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/" + fileName + ".fxml"));
         try {
             Parent root = fxmlLoader.load();
@@ -38,7 +39,6 @@ public class SceneManager {
         catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return fxmlLoader;
     }
 	
 

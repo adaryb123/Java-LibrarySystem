@@ -1,12 +1,13 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
     Secondary user of the app.
     Customer of the libary, can reserve, borrow and retrieve books, and write reviews for them.
  */
-public class Reader {
+public class Reader implements Serializable {
     private ReadersCard readersCard;
     private ArrayList<BookCopy>  borrowedBooks;
     private ArrayList<BookCopy>  reservedBooks;

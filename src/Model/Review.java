@@ -1,9 +1,11 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  *  A text written by user about the book he borrowed, after he retrieved it
  */
-public class Review {
+public class Review implements Serializable {
     private String date;
     private String reviewText;
     private int starsNum;

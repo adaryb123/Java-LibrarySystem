@@ -9,19 +9,14 @@ import javafx.scene.layout.BorderPane;
    This class is responsible to switch between scenes.
     In future it may also control some header/footer that will always be visible
  */
-public class ControllerWindowLibrarian {
-
-    @FXML
-    private BorderPane BorderPaneContent;
-
-    public ControllerWindowLibrarian(){
+public class LibrarianController {
+    public LibrarianController() {
         WindowLibrarianReference.setParentController(this);
     }
 
     @FXML
     void switchSceneToBorrowings(ActionEvent event) {
-        FXMLLoader fxmlLoader = SceneManager.switchBorderPane(BorderPaneContent, "sceneBorrowings");
-        ((ControllerSceneBorrowings) fxmlLoader.getController()).init();
+        SceneManager.switchScene(event, "BorrowingScene");
     }
 
     @FXML

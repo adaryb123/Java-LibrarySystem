@@ -1,9 +1,11 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  *      There can be more copies of the same book title, each can be reserved, borrowed or available
  */
-public class BookCopy {
+public class BookCopy implements Serializable {
     private BookTitle bookTitle;
     private int id;
     public enum Status{

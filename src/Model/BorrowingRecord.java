@@ -1,12 +1,13 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *    Record: Which user , borrowed which books, when.
  *    When the books are retrieved, this record will be deleted?
  */
-public class BorrowingRecord {
+public class BorrowingRecord implements Serializable {
     private String date;
     private Reader reader;
     private ArrayList<BookCopy> books;

@@ -1,32 +1,24 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Every reader must have an unique readers card to be able to use libary
  */
-public class ReadersCard {
-    private String image;
+public class ReadersCard implements Serializable {
     private String readerName;
     private String readerAddress;
     private String readerPhoneNumber;
     private String readerEmail;
     private int id;
 
-    public ReadersCard(String image, String readerName, String readerAddress,
+    public ReadersCard(String readerName, String readerAddress,
                        String readerPhoneNumber, String readerEmail, int id) {
-        this.image = image;
         this.readerName = readerName;
         this.readerAddress = readerAddress;
         this.readerPhoneNumber = readerPhoneNumber;
         this.readerEmail = readerEmail;
         this.id = id;               //id should be generated
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getReaderName() {

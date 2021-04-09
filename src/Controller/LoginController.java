@@ -1,18 +1,16 @@
 package Controller;
 
-import Controller.SceneManager;
-import Controller.WindowLibrarianReference;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class LoginController {
-    public void loginAsLibrarian(ActionEvent event) throws Exception {
-        SceneManager.switchScene(event,"LibrarianScene");
-        WindowLibrarianReference.getParentController().switchSceneToBorrowings(new ActionEvent());
+    // on mouse click check if user name and user password are right and login as a Librarian
+    public void loginAsLibrarian(MouseEvent event) {
+        // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
+        SceneManager.switchScene(event, SceneManager.LIBRARIAN_BORROWINGS_SCENE, true);
     }
 
-    public void loginAsReader(ActionEvent event) {
-
+    // on mouse click check reader's ID and login as a reader
+    public void loginAsReader(MouseEvent event) {
+        // parameter librarianSceneFlag has to be false, because we are switching to one of the reader's scenes
     }
 }

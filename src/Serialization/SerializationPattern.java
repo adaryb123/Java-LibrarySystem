@@ -23,7 +23,7 @@ public class SerializationPattern {
     private ObjectForSerialization serializationObject;
 
     // Store all arraylists in one object for better serialization
-    private static class ObjectForSerialization implements Serializable {
+    public static class ObjectForSerialization implements Serializable {
         // needed lists for program
         private final ArrayList<Librarian> allLibrarians;
         private final ArrayList<Reader> allReaders;
@@ -35,6 +35,22 @@ public class SerializationPattern {
             this.allReaders = new ArrayList<>();
             this.allBorrowingRecords = new ArrayList<>();
             this.allBookTitles = new ArrayList<>();
+        }
+
+        public ArrayList<Librarian> getAllLibrarians() {
+            return allLibrarians;
+        }
+
+        public ArrayList<Reader> getAllReaders() {
+            return allReaders;
+        }
+
+        public ArrayList<BorrowingRecord> getAllBorrowingRecords() {
+            return allBorrowingRecords;
+        }
+
+        public ArrayList<BookTitle> getAllBookTitles() {
+            return allBookTitles;
         }
     }
 
@@ -49,22 +65,22 @@ public class SerializationPattern {
             LOGGER.log(Level.SEVERE, e.getMessage());
             // NOTE: SEPARATE THIS EXCEPTIONS
             // if there was an exception, then create new observable list for program
-            LOGGER.info("Creating new observable lists\n" +
+            LOGGER.info("Creating new arraylists\n" +
                     "Something might went wrong\n" +
-                    "or there wasn't any data in file booking_data.ser,\n" +
+                    "or there wasn't any data in file library_data.ser,\n" +
                     "which are used for serialization."
             );
-            this.serializationObject = new ObjectForSerialization();
+            this.setSerializationObject(new ObjectForSerialization());
         }
     }
 
     // this method serialize whole serializationObject, whenever it is called
     public void serializeData() {
         // get serialized data from /booking_data.ser
-        try (FileOutputStream fileOut = new FileOutputStream("booking_data.ser");
+        try (FileOutputStream fileOut = new FileOutputStream("library_data.ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut))
         {
-            LOGGER.info("Serializing data to /booking_data.ser");
+            LOGGER.info("Serializing data to /library_data.ser");
             out.writeObject(this.serializationObject);
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,5 +94,13 @@ public class SerializationPattern {
             INSTANCE = new SerializationPattern();
         }
         return INSTANCE;
+    }
+
+    public ObjectForSerialization getSerializationObject() {
+        return serializationObject;
+    }
+
+    public void setSerializationObject(ObjectForSerialization serializationObject) {
+        this.serializationObject = serializationObject;
     }
 }

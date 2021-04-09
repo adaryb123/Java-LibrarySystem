@@ -1,8 +1,7 @@
 package Serialization;
 
-import Model.BookTitle;
-import Model.BorrowingRecord;
-import Model.Librarian;
+import Model.*;
+import Model.Reader;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -29,12 +28,14 @@ public class SerializationPattern {
         private final ArrayList<Reader> allReaders;
         private final ArrayList<BorrowingRecord> allBorrowingRecords;
         private final ArrayList<BookTitle> allBookTitles;
+        private final ArrayList<BookCopy> allBookCopies;
 
         public ObjectForSerialization() {
             this.allLibrarians = new ArrayList<>();
             this.allReaders = new ArrayList<>();
             this.allBorrowingRecords = new ArrayList<>();
             this.allBookTitles = new ArrayList<>();
+            this.allBookCopies = new ArrayList<>();
         }
 
         public ArrayList<Librarian> getAllLibrarians() {
@@ -51,6 +52,10 @@ public class SerializationPattern {
 
         public ArrayList<BookTitle> getAllBookTitles() {
             return allBookTitles;
+        }
+
+        public ArrayList<BookCopy> getAllBookCopies() {
+            return allBookCopies;
         }
     }
 
@@ -76,7 +81,7 @@ public class SerializationPattern {
 
     // this method serialize whole serializationObject, whenever it is called
     public void serializeData() {
-        // get serialized data from /booking_data.ser
+        // get serialized data from /library_data.ser
         try (FileOutputStream fileOut = new FileOutputStream("library_data.ser");
              ObjectOutputStream out = new ObjectOutputStream(fileOut))
         {

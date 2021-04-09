@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
     Secondary user of the app.
-    Customer of the libary, can reserve, borrow and retrieve books, and write reviews for them.
+    Customer of the library, can reserve, borrow and retrieve books, and write reviews for them.
  */
 public class Reader implements Serializable {
     private ReadersCard readersCard;

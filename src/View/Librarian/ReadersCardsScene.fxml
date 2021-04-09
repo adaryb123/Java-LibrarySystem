@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1354.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="45.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onMouseClicked="#librarianBorrowings" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Borrowings" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onMouseClicked="#librarianReadersCards" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Reader's cards" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onMouseClicked="#booksEvidence" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Books evidence" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="Log out" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets left="65.0" right="65.0" />
+            </padding>
+        </HBox>
+    </top>
+    <center>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <BorderPane.margin>
+                <Insets bottom="25.0" left="65.0" right="65.0" top="25.0" />
+            </BorderPane.margin>
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowSpan="2">
+                    <children>
+                        <Label text="All Borrowings: ">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <TableView fx:id="borrowingsTableView" prefHeight="593.0" prefWidth="1224.0">
+                            <columns>
+                                <TableColumn fx:id="dateCol" prefWidth="165.0" text="Date" />
+                                <TableColumn fx:id="idCol" prefWidth="210.0" text="Reader Id" />
+                                <TableColumn fx:id="nameCol" prefWidth="225.0" text="Reader name" />
+                                <TableColumn fx:id="phoneNumberCol" prefWidth="228.0" text="Reader phone number" />
+                                <TableColumn fx:id="emailCol" prefWidth="225.0" text="Reader email" />
+                                <TableColumn fx:id="borrowedBooksCol" prefWidth="169.0" text="Borrowed books" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+    </center>
+    <bottom>
+        <GridPane prefHeight="100.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <GridPane.margin>
+                        <Insets left="65.0" />
+                    </GridPane.margin>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="45.0" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets right="65.0" />
+                    </GridPane.margin>
+                    <children>
+                        <Button mnemonicParsing="false" onMouseClicked="#detailBorrowingScene" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #1873d3;" text="Detail" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onMouseClicked="#createBorrowingScene" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="Create Borrowing" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </bottom>
+</BorderPane>

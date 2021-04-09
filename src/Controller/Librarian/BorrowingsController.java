@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LibrarianBorrowingsController extends LibrarianController implements Initializable {
+public class BorrowingsController extends LibrarianController implements Initializable {
 
     @FXML
     private TableView<BorrowingRecord> borrowingsTableView;
@@ -62,7 +62,7 @@ public class LibrarianBorrowingsController extends LibrarianController implement
 
     public void createBorrowingScene(MouseEvent event) {
         // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
-        SceneManager.switchScene(event, SceneManager.LIBRARIAN_CREATE_BORROWING_SCENE, true);
+        SceneManager.switchScene(event, SceneManager.CREATE_BORROWING_SCENE, true);
     }
 
     public void detailBorrowingScene() {

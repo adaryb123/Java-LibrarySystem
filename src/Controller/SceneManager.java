@@ -1,7 +1,6 @@
 package Controller;
-import Controller.Librarian.LibrarianBooksEvidenceController;
-import Controller.Librarian.LibrarianBorrowingsController;
-import Controller.Librarian.LibrarianReadersCardsController;
+import Controller.Librarian.*;
+import Model.Reader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -18,16 +17,19 @@ import java.util.logging.Logger;
  * It loads the .fxml file of new scene when switching between scenes.
  * Class is abstract, because we don't need to create an instance of it.
  */
-public class SceneManager {
+public abstract class SceneManager {
 
     // login constant
     public static final String LOGIN_SCENE = "LoginScene";
 
     // constants for Librarian's scenes files
-    public static final String LIBRARIAN_BORROWINGS_SCENE = "LibrarianBorrowingsScene";
-    public static final String LIBRARIAN_BOOKS_EVIDENCE_SCENE = "LibrarianBooksEvidenceScene";
-    public static final String LIBRARIAN_READERS_CARDS_SCENE = "LibrarianReadersCardsScene";
-    public static final String LIBRARIAN_CREATE_BORROWING_SCENE = "LibrarianCreateBorrowingScene";
+    public static final String BORROWINGS_SCENE = "BorrowingsScene";
+    public static final String BOOKS_EVIDENCE_SCENE = "BooksEvidenceScene";
+    public static final String READERS_CARDS_SCENE = "ReadersCardsScene";
+    public static final String CREATE_BORROWING_SCENE = "CreateBorrowingScene";
+    public static final String CHOOSE_BOOKS_BORROWING_SCENE = "ChooseBooksBorrowingScene";
+
+    public static Reader selectedReader = null;
 
     // logger for this class
     private static final Logger LOGGER = Logger.getLogger(SceneManager.class.getName());
@@ -56,6 +58,7 @@ public class SceneManager {
     public static void makeSwitch(FXMLLoader fxmlLoader, MouseEvent event, String fileName) {
         try {
             // set scene controller before switching to new scene in stage
+            // scene controller will be return from getController method based on fileName parameter
             fxmlLoader.setController(SceneManager.getController(fileName));
             Parent root = fxmlLoader.load();
             Scene fxmlScene = new Scene(root);
@@ -64,7 +67,8 @@ public class SceneManager {
             window.show();
         } catch (Exception e) {
             e.printStackTrace(); // Remove this line, when program is finished
-            LOGGER.log(Level.SEVERE, "Something went wrong during switching scene: " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Something went wrong during switching scene with name: " + fileName + "\n"
+                        + "Exception message: " + e.getMessage());
         }
     }
 
@@ -73,12 +77,16 @@ public class SceneManager {
         switch (fileName) {
             case LOGIN_SCENE:
                 return new LoginController();
-            case LIBRARIAN_BORROWINGS_SCENE:
-                return new LibrarianBorrowingsController();
-            case LIBRARIAN_BOOKS_EVIDENCE_SCENE:
-                return new LibrarianBooksEvidenceController();
-            case LIBRARIAN_READERS_CARDS_SCENE:
-                return new LibrarianReadersCardsController();
+            case BORROWINGS_SCENE:
+                return new BorrowingsController();
+            case BOOKS_EVIDENCE_SCENE:
+                return new BooksEvidenceController();
+            case READERS_CARDS_SCENE:
+                return new ReadersCardsController();
+            case CREATE_BORROWING_SCENE:
+                return new CreateBorrowingController();
+            case CHOOSE_BOOKS_BORROWING_SCENE:
+                return new ChooseBooksBorrowingController();
         }
 
         return null;

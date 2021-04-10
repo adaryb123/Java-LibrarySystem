@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Main extends Application {
 
     @Override
@@ -18,6 +21,12 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         // set location to fxmlLoader
         fxmlLoader.setLocation(getClass().getResource("/View/LoginScene.fxml"));
+
+        // default language will be english
+        fxmlLoader.setResources(ResourceBundle.getBundle(
+                "Resources.english_en_UK",
+                new Locale("en", "UK")
+        ));
 
         // set LoginController as controller for LoginScreen
         LoginController controller = new LoginController();

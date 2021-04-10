@@ -2,7 +2,6 @@ package Controller.Librarian;
 
 import Controller.SceneManager;
 import Model.Reader;
-import Model.ReadersCard;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;

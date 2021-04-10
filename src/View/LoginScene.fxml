@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -27,7 +28,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Login as a Librarian">
+                  <Label text="%librarian_login_label">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -36,7 +37,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <Label text="Login as a Reader">
+                  <Label text="%reader_login_label">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
@@ -45,19 +46,19 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <Label text="User name:">
+                  <Label text="%user_name_label">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <TextField fx:id="tfUserName">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="20.0" />
                      </font>
                   </TextField>
-                  <Label text="Password: ">
+                  <Label text="%password_label">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -65,7 +66,7 @@
                   </Label>
                   <TextField fx:id="tfPassword">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="20.0" />
                      </font>
                   </TextField>
                </children>
@@ -78,14 +79,14 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label text="Reader's ID: ">
+                  <Label text="%reader_id_label">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <TextField fx:id="tfReaderId">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="20.0" />
                      </font>
                   </TextField>
                </children>
@@ -98,7 +99,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#loginAsLibrarian" prefHeight="75.0" prefWidth="175.0" style="-fx-background-color: #663E0A;" text="Login" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#loginAsLibrarian" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%login_btn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -112,7 +113,7 @@
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#loginAsReader" prefHeight="75.0" prefWidth="175.0" style="-fx-background-color: #663E0A;" text="Login" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#loginAsReader" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%login_btn" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
@@ -127,18 +128,53 @@
          </children>
       </GridPane>
    </center>
-   <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Library system">
-               <font>
-                  <Font name="System Bold" size="48.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-   </top>
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER" />
    </bottom>
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FFDEAD;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="%library_system_label">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FFDEAD;">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="281.0">
+                     <children>
+                        <Label text="%language_label">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="languageComboBox" onAction="#setLanguage" prefHeight="44.0" promptText="%selected_language_label" prefWidth="275.0" style="-fx-font-size: 20px;" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #FFDEAD;" GridPane.columnIndex="2">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#quit" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%quit_btn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </top>
 </BorderPane>

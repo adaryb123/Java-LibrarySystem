@@ -4,7 +4,6 @@ import Controller.SceneManager;
 import Model.Reader;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

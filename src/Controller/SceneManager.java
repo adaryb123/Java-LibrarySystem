@@ -25,9 +25,10 @@ public abstract class SceneManager {
     // constants for Librarian's scenes files
     public static final String BORROWINGS_SCENE = "BorrowingsScene";
     public static final String BOOKS_EVIDENCE_SCENE = "BooksEvidenceScene";
-    public static final String READERS_CARDS_SCENE = "ReadersCardsScene";
+    public static final String ALL_READERS_SCENE = "AllReadersScene";
     public static final String CREATE_BORROWING_SCENE = "CreateBorrowingScene";
     public static final String CHOOSE_BOOKS_BORROWING_SCENE = "ChooseBooksBorrowingScene";
+    public static final String CREATE_READER_SCENE = "CreateReaderScene";
 
     public static Reader selectedReader = null;
 
@@ -81,12 +82,14 @@ public abstract class SceneManager {
                 return new BorrowingsController();
             case BOOKS_EVIDENCE_SCENE:
                 return new BooksEvidenceController();
-            case READERS_CARDS_SCENE:
-                return new ReadersCardsController();
+            case ALL_READERS_SCENE:
+                return new AllReadersController();
             case CREATE_BORROWING_SCENE:
                 return new CreateBorrowingController();
             case CHOOSE_BOOKS_BORROWING_SCENE:
                 return new ChooseBooksBorrowingController();
+            case CREATE_READER_SCENE:
+                return new CreateReaderController();
         }
 
         return null;

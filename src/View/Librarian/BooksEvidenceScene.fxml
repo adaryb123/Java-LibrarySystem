@@ -22,7 +22,7 @@
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#librarianReadersCards" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Reader's cards" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Reader's cards" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>

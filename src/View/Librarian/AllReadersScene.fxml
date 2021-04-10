@@ -22,7 +22,7 @@
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#librarianReadersCards" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Reader's cards" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Readers" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
@@ -59,19 +59,19 @@
             <children>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowSpan="2">
                     <children>
-                        <Label text="All Borrowings: ">
+                        <Label text="All Readers: ">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
                         </Label>
-                        <TableView fx:id="borrowingsTableView" prefHeight="593.0" prefWidth="1224.0">
+                        <TableView fx:id="readersTableView" prefHeight="593.0" prefWidth="1224.0">
                             <columns>
-                                <TableColumn fx:id="dateCol" prefWidth="165.0" text="Date" />
-                                <TableColumn fx:id="idCol" prefWidth="210.0" text="Reader Id" />
-                                <TableColumn fx:id="nameCol" prefWidth="225.0" text="Reader name" />
-                                <TableColumn fx:id="phoneNumberCol" prefWidth="228.0" text="Reader phone number" />
-                                <TableColumn fx:id="emailCol" prefWidth="225.0" text="Reader email" />
-                                <TableColumn fx:id="borrowedBooksCol" prefWidth="169.0" text="Borrowed books" />
+                                <TableColumn fx:id="idCol" prefWidth="189.0" text="Reader Id" />
+                                <TableColumn fx:id="nameCol" prefWidth="195.0" text="Reader name" />
+                                <TableColumn fx:id="phoneNumberCol" prefWidth="206.0" text="Reader phone number" />
+                                <TableColumn fx:id="emailCol" prefWidth="217.0" text="Reader email" />
+                                <TableColumn fx:id="addressCol" prefWidth="209.0" text="Reader address" />
+                                <TableColumn fx:id="reservedBooksCol" prefWidth="207.0" text="Reserved books number" />
                             </columns>
                         </TableView>
                     </children>
@@ -99,12 +99,12 @@
                         <Insets right="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#detailBorrowingScene" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #1873d3;" text="Detail" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#detailReader" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #1873d3;" text="Detail" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#createBorrowingScene" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="Create Borrowing" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#createReaderCard" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="Create reader" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>

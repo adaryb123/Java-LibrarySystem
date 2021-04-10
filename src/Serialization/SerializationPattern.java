@@ -101,6 +101,13 @@ public class SerializationPattern {
         return INSTANCE;
     }
 
+    public void addNewReader(Reader newReader) {
+        // add newReader to arraylist with all readers
+        this.getSerializationObject().getAllReaders().add(newReader);
+        // serialize data, because new reader was added
+        this.serializeData();
+    }
+
     public ObjectForSerialization getSerializationObject() {
         return serializationObject;
     }

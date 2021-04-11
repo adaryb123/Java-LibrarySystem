@@ -90,7 +90,7 @@
             <children>
                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="45.0">
                     <GridPane.margin>
-                        <Insets right="65.0" />
+                        <Insets left="65.0" right="65.0" />
                     </GridPane.margin>
                     <children>
                         <Button mnemonicParsing="false" onMouseClicked="#detailBookTitle" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #1873d3;" text="%detail_btn" textFill="WHITE">

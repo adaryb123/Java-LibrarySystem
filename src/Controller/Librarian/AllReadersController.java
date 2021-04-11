@@ -2,6 +2,7 @@ package Controller.Librarian;
 
 import Controller.SceneManager;
 import Model.Reader;
+import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -43,6 +44,18 @@ public class AllReadersController extends LibrarianController implements Initial
     public void createReaderCard(MouseEvent event) {
         // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
         SceneManager.switchScene(event, SceneManager.CREATE_READER_SCENE, true);
+    }
+
+    public void editReader(MouseEvent event) {
+        if (readersTableView.getSelectionModel().getSelectedItem() == null) {
+            // show error popup, because user didn't select reader
+            PopUps.showErrorPopUp("Error", "You have to select reader, who you want to edit.");
+            return;
+        }
+        // get selected reader from tableView and store it in SceneManager's selectedReader attribute
+        SceneManager.selectedReader = readersTableView.getSelectionModel().getSelectedItem();
+        // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
+        SceneManager.switchScene(event, SceneManager.EDIT_READER_SCENE, true);
     }
 
     public void detailReader(MouseEvent event) {

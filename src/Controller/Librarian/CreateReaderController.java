@@ -14,22 +14,24 @@ public class CreateReaderController extends LibrarianController {
     @FXML
     private TextField tfName, tfPhoneNumber, tfEmail, tfAddress;
 
-    public void createReader(MouseEvent event) {
-        String name = tfName.getText();
-        String phoneNumber = tfPhoneNumber.getText();
-        String email = tfEmail.getText();
-        String address = tfAddress.getText();
+    private String name, phoneNumber, email, address;
 
+    public void createReader(MouseEvent event) {
         // continue only if user fill each TextField
-        if (name.equals("") || phoneNumber.equals("") || email.equals("") || address.equals("")) {
-            PopUps.showErrorPopUp("Error", "Each text field has to be filled.");
+        if (!this.checkTextFieldsReader()) {
             return;
         }
 
         // we get unique number for readers id, by getting the size of the all readers arraylist
         int uniqueId = SerializationPattern.getInstance().getSerializationObject().getAllReaders().size();
         // create reader card based on filled data
-        ReadersCard readersCard = new ReadersCard(name, address, phoneNumber, email, uniqueId);
+        ReadersCard readersCard = new ReadersCard(
+                this.name,
+                this.address,
+                this.phoneNumber,
+                this.email,
+                uniqueId
+        );
 
         // create new reader with created reader card
         // add reader to all readers arraylist and serialize data
@@ -41,5 +43,36 @@ public class CreateReaderController extends LibrarianController {
         PopUps.showSuccessPopUp("Success", "Reader was successfully created.");
         // after pop up switch back to all readers scene
         SceneManager.switchScene(event, SceneManager.ALL_READERS_SCENE, true);
+    }
+
+    public boolean checkTextFieldsReader() {
+        this.name = tfName.getText();
+        this.phoneNumber = tfPhoneNumber.getText();
+        this.email = tfEmail.getText();
+        this.address = tfAddress.getText();
+
+        // continue only if user fill each TextField
+        if (this.name.equals("") || this.phoneNumber.equals("") || this.email.equals("") || this.address.equals("")) {
+            PopUps.showErrorPopUp("Error", "Each text field has to be filled.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }

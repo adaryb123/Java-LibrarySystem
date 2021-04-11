@@ -1,5 +1,6 @@
 package Controller;
 import Controller.Librarian.*;
+import Model.BookTitle;
 import Model.Reader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +33,14 @@ public abstract class SceneManager {
     public static final String CHOOSE_BOOKS_BORROWING_SCENE = "ChooseBooksBorrowingScene";
     public static final String CREATE_READER_SCENE = "CreateReaderScene";
     public static final String CREATE_BOOK_TITLE_SCENE = "CreateBookTitleScene";
+    public static final String EDIT_BOOK_TITLE_SCENE = "EditBookTitleScene";
 
-    // this is reader is needed when creating new borrowing and on reader detail/edit
+    // this reader is needed when creating new borrowing and on reader detail/edit
     public static Reader selectedReader = null;
+    // this book title is needed for editing selected book title in EditBookTitleScene
+    public static BookTitle selectedBookTitle = null;
 
-    // each scene will ha
+    // each scene will have ResourceBundle for localization and internationalization
     public static ResourceBundle resourceBundle;
 
     // logger for this class
@@ -117,6 +121,8 @@ public abstract class SceneManager {
                 return new CreateReaderController();
             case CREATE_BOOK_TITLE_SCENE:
                 return new CreateBookTitleController();
+            case EDIT_BOOK_TITLE_SCENE:
+                return new EditBookTitleController();
         }
 
         return null;

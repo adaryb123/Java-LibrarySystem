@@ -18,26 +18,27 @@ public class CreateBookTitleController extends LibrarianController {
 
     @FXML
     private TextField tfAuthorName, tfBookName, tfPublisher, tfPublishedYear;
+    // these attributes are needed to make code DRY in EditBookTitleController and this class
+    private String author, bookName, publisher, publishedYear;
 
     // on button click create new BookTitle and go back to Books evidence scene
     public void finishCreateTitle(MouseEvent event) {
-        String author = tfAuthorName.getText();
-        String bookName = tfBookName.getText();
-        String publisher = tfPublisher.getText();
-        String publishedYear = tfPublishedYear.getText();
-
         // BookTitle won't be created if user didn't fill all text fields
-        if (author.equals("") || bookName.equals("") || publisher.equals("") || publishedYear.equals("")) {
-            PopUps.showErrorPopUp("Error", "All text fields have to be filled.");
+        if (!checkTextField()) {
             return;
         }
 
         // try parse publishedYear from string to integer
         // if parsing was successful create BookTitle and switch to BooksEvidenceScene
         try {
-            int publishedYearInt = Integer.parseInt(publishedYear);
+            int publishedYearInt = Integer.parseInt(this.publishedYear);
             // create instance of BookTitle based on filled data
-            BookTitle newBookTitle = new BookTitle(author, bookName, publisher, publishedYearInt);
+            BookTitle newBookTitle = new BookTitle(
+                    this.author,
+                    this.bookName,
+                    this.publisher,
+                    publishedYearInt
+            );
             // add new BookTitle to all book titles arraylist and serialize data
             SerializationPattern.getInstance().addNewBookTitle(newBookTitle);
             // show success popup to user
@@ -53,5 +54,36 @@ public class CreateBookTitleController extends LibrarianController {
                     "Published year has to be integer"
             );
         }
+    }
+
+    public boolean checkTextField() {
+        this.author = tfAuthorName.getText();
+        this.bookName = tfBookName.getText();
+        this.publisher = tfPublisher.getText();
+        this.publishedYear = tfPublishedYear.getText();
+
+        // BookTitle won't be created if user didn't fill all text fields
+        if (this.author.equals("") || this.bookName.equals("") || this.publisher.equals("") || this.publishedYear.equals("")) {
+            PopUps.showErrorPopUp("Error", "All text fields have to be filled.");
+            return false;
+        }
+
+        return true;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getPublishedYear() {
+        return publishedYear;
     }
 }

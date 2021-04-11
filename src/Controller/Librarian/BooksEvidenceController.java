@@ -88,6 +88,19 @@ public class BooksEvidenceController extends LibrarianController implements Init
         PopUps.showSuccessPopUp("Success", "Book copy was successfully created");
     }
 
+    public void editBookTitle(MouseEvent event) {
+        // check if user selected BookTitle, which he/she wants to edit
+        if (bookTitlesTableView.getSelectionModel().getSelectedItem() == null) {
+            PopUps.showErrorPopUp("Error", "You have to select book title, which you want to edit");
+            return;
+        }
+        // set selectedBookTitle in SceneManager class, to make it accessible anywhere
+        SceneManager.selectedBookTitle = bookTitlesTableView.getSelectionModel().getSelectedItem();
+        // switch to EditBookTitleScene
+        // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
+        SceneManager.switchScene(event, SceneManager.EDIT_BOOK_TITLE_SCENE, true);
+    }
+
     public void detailBookTitle(MouseEvent event) {
 
     }

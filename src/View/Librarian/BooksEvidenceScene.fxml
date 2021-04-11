@@ -83,18 +83,12 @@
         <GridPane prefHeight="100.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <GridPane.margin>
-                        <Insets left="65.0" />
-                    </GridPane.margin>
-                </HBox>
-                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="45.0" GridPane.columnIndex="1">
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="45.0">
                     <GridPane.margin>
                         <Insets right="65.0" />
                     </GridPane.margin>
@@ -104,11 +98,16 @@
                                 <Font name="System Bold" size="22.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#createBookTitle" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_book_title_btn" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#createBookCopy" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_book_copy_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
                         </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#createBookTitle" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_book_title_btn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
                     </children>
                 </HBox>
             </children>

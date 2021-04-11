@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class CreateBookTitleController extends LibrarianController {
 
     // logger for this class
-    private static final Logger LOGGER = Logger.getLogger(SceneManager.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CreateBookTitleController.class.getName());
 
     @FXML
     private TextField tfAuthorName, tfBookName, tfPublisher, tfPublishedYear;

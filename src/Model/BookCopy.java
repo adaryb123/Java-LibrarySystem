@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class BookCopy implements Serializable {
     private BookTitle bookTitle;
     private int id;
-    public enum Status{
+    public enum Status {
         RESERVED,
         BORROWED,
         AVAILABLE

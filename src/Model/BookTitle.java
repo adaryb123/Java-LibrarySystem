@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *     There can be more copies of the same book title in the libary.
+ *     There can be more copies of the same book title in the library.
  *     But reviews must be assigned to the title, not individual copies.
  */
 public class BookTitle implements Serializable {
@@ -13,6 +13,7 @@ public class BookTitle implements Serializable {
     private String publisherName;
     private int yearPublished;
     private ArrayList<Review> reviews;
+    private ArrayList<BookCopy> allBookCopies;
 
     public BookTitle(String authorName, String bookName,
                      String publisherName, int yearPublished, ArrayList<Review> reviews) {
@@ -21,6 +22,7 @@ public class BookTitle implements Serializable {
         this.publisherName = publisherName;
         this.yearPublished = yearPublished;
         this.reviews = reviews;
+        this.allBookCopies = new ArrayList<>();
     }
 
     public BookTitle(String authorName, String bookName, String publisherName, int yearPublished) {
@@ -29,6 +31,7 @@ public class BookTitle implements Serializable {
         this.publisherName = publisherName;
         this.yearPublished = yearPublished;
         this.reviews = new ArrayList<>();
+        this.allBookCopies = new ArrayList<>();
     }
 
     public String getAuthorName() {
@@ -69,5 +72,13 @@ public class BookTitle implements Serializable {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public ArrayList<BookCopy> getAllBookCopies() {
+        return allBookCopies;
+    }
+
+    public void setAllBookCopies(ArrayList<BookCopy> allBookCopies) {
+        this.allBookCopies = allBookCopies;
     }
 }

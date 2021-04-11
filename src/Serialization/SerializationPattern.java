@@ -108,6 +108,13 @@ public class SerializationPattern {
         this.serializeData();
     }
 
+    public void addNewBookTitle(BookTitle newBookTitle) {
+        // add newBookTitle to arraylist with all readers
+        this.getSerializationObject().getAllBookTitles().add(newBookTitle);
+        // serialize data, because new book title was added
+        this.serializeData();
+    }
+
     public ObjectForSerialization getSerializationObject() {
         return serializationObject;
     }

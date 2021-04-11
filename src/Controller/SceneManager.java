@@ -31,6 +31,7 @@ public abstract class SceneManager {
     public static final String CREATE_BORROWING_SCENE = "CreateBorrowingScene";
     public static final String CHOOSE_BOOKS_BORROWING_SCENE = "ChooseBooksBorrowingScene";
     public static final String CREATE_READER_SCENE = "CreateReaderScene";
+    public static final String CREATE_BOOK_TITLE_SCENE = "CreateBookTitleScene";
 
     // this is reader is needed when creating new borrowing and on reader detail/edit
     public static Reader selectedReader = null;
@@ -114,6 +115,8 @@ public abstract class SceneManager {
                 return new ChooseBooksBorrowingController();
             case CREATE_READER_SCENE:
                 return new CreateReaderController();
+            case CREATE_BOOK_TITLE_SCENE:
+                return new CreateBookTitleController();
         }
 
         return null;

@@ -1,6 +1,7 @@
 package Main;
 
 import Controller.LoginController;
+import Controller.SceneManager;
 import Serialization.SerializationPattern;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +24,14 @@ public class Main extends Application {
         fxmlLoader.setLocation(getClass().getResource("/View/LoginScene.fxml"));
 
         // default language will be english
-        fxmlLoader.setResources(ResourceBundle.getBundle(
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 "Resources.english_en_UK",
                 new Locale("en", "UK")
-        ));
+        );
+        // set default ResourceBundle in SceneManager abstract class
+        SceneManager.resourceBundle = resourceBundle;
+        // set resources with created ResourceBundle
+        fxmlLoader.setResources(resourceBundle);
 
         // set LoginController as controller for LoginScreen
         LoginController controller = new LoginController();

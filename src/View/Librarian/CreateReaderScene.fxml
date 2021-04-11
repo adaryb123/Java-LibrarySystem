@@ -16,22 +16,22 @@
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="45.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" onMouseClicked="#librarianBorrowings" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Borrowings" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#librarianBorrowings" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%borrowings_btn" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Reader's cards" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%readers_btn" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#booksEvidence" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="Books evidence" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#booksEvidence" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%books_evidence_btn" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="Log out" textFill="WHITE">
+                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%log_out_btn" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="22.0" />
                     </font>
@@ -58,7 +58,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Name: ">
+                  <Label text="%name_label">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -75,7 +75,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <Label text="Address: ">
+                  <Label text="%address_label">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -92,7 +92,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <Label text="Phone number: ">
+                  <Label text="%phone_number_label">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -109,7 +109,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label text="Email: ">
+                  <Label text="%email_label">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -142,7 +142,7 @@
                         <Insets left="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="Back" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%back_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
@@ -154,7 +154,7 @@
                         <Insets right="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#createReader" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="Create" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#createReader" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>

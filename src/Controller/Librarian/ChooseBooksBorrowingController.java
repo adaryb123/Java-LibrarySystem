@@ -7,11 +7,11 @@ import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -33,8 +33,8 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
     private TableColumn <BookCopy, String> borrowingBookIdCol, borrowingBookAuthorCol,
             borrowingBookNameCol, borrowingBookPublisherCol, borrowingBookStateCol;
 
-    private ArrayList <BookCopy> reservedBooksByReader;
-    private ArrayList <BookCopy> allAvailableBooks;
+    private ObservableList <BookCopy> reservedBooksByReader;
+    private ObservableList <BookCopy> allAvailableBooks;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,7 +42,7 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
         if (allAvailableBooksTableView != null && borrowingBooksTableView != null) {
             // initialize reservedBooksByReader with selectedReader's reservedBooks
             Reader selectedReader = SceneManager.selectedReader;
-            reservedBooksByReader = selectedReader.getReservedBooks();
+            reservedBooksByReader = FXCollections.observableArrayList(selectedReader.getReservedBooks());
             // map columns in allBooksTableView on methods in BookCopy class
             this.mapColumnsInTableView(allBookIdCol, allBookAuthorCol,
                     allBookNameCol, allBookPublisherCol, allBookStateCol
@@ -54,9 +54,9 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
             // get all available books
             this.getAllAvailableBooks();
             // display all available books in allBooksTableView
-            allAvailableBooksTableView.setItems(FXCollections.observableArrayList(allAvailableBooks));
+            allAvailableBooksTableView.setItems(allAvailableBooks);
             // display reserved books in borrowingBooksTableView
-            borrowingBooksTableView.setItems(FXCollections.observableArrayList(reservedBooksByReader));
+            borrowingBooksTableView.setItems(reservedBooksByReader);
         }
     }
 
@@ -71,10 +71,11 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
         }
         // get selected BookCopy
         BookCopy selectedBookCopy = allAvailableBooksTableView.getSelectionModel().getSelectedItem();
+        // change status of selected book
+        selectedBookCopy.setStatus(BookCopy.Status.RESERVED);
         // remove book copy from all available books arraylist
         allAvailableBooks.remove(selectedBookCopy);
-        // change status of selected book and add it to reader's reserved books
-        selectedBookCopy.setStatus(BookCopy.Status.RESERVED);
+        // store selected book into reservedBooksByReader
         reservedBooksByReader.add(selectedBookCopy);
         // refresh tableviews, to display updated data
         allAvailableBooksTableView.refresh();
@@ -92,10 +93,11 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
         }
         // get selected book
         BookCopy selectedBookCopy = borrowingBooksTableView.getSelectionModel().getSelectedItem();
+        // change status of selected book
+        selectedBookCopy.setStatus(BookCopy.Status.AVAILABLE);
         // remove book copy from reader's reserved books arraylist
         reservedBooksByReader.remove(selectedBookCopy);
-        // change status of selected book and add it to all available books
-        selectedBookCopy.setStatus(BookCopy.Status.AVAILABLE);
+        // add selected book to all available books
         allAvailableBooks.add(selectedBookCopy);
         // refresh tableviews, to display updated data
         allAvailableBooksTableView.refresh();
@@ -108,7 +110,7 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
 
     public void getAllAvailableBooks() {
         // create new arraylist for all available books
-        this.allAvailableBooks = new ArrayList<>();
+        this.allAvailableBooks = FXCollections.observableArrayList();
         // get all book copies
         ArrayList<BookCopy> allBooks = SerializationPattern.getInstance().getSerializationObject().getAllBookCopies();
 

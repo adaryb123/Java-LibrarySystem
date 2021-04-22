@@ -122,6 +122,13 @@ public class SerializationPattern {
         this.serializeData();
     }
 
+    public void addNewBorrowingRecord(BorrowingRecord newBorrowingRecord) {
+        // add newBorrowingRecord to arraylist with all borrowing records
+        this.getSerializationObject().getAllBorrowingRecords().add(newBorrowingRecord);
+        // serialize data, because new borrowing record was added
+        this.serializeData();
+    }
+
     public ObjectForSerialization getSerializationObject() {
         return serializationObject;
     }

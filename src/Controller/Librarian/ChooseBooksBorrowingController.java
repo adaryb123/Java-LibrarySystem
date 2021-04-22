@@ -2,6 +2,7 @@ package Controller.Librarian;
 
 import Controller.SceneManager;
 import Model.BookCopy;
+import Model.BorrowingRecord;
 import Model.Reader;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
@@ -15,10 +16,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
-public class ChooseBooksBorrowingController extends LibrarianController implements Initializable {
+public class ChooseBooksBorrowingController extends BorrowingsController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(ChooseBooksBorrowingController.class.getName());
 
     @FXML
     private TableView <BookCopy> allAvailableBooksTableView, borrowingBooksTableView;
@@ -105,7 +112,32 @@ public class ChooseBooksBorrowingController extends LibrarianController implemen
     }
 
     public void createBorrowing(MouseEvent event) {
-
+        // check if user selected at least one book for borrowing
+        if (reservedBooksByReader.size() == 0) {
+            PopUps.showErrorPopUp("Error", "At least one book has to be selected for borrowing.");
+            return;
+        }
+        // get current date and create string from it
+        Date currentDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String stringDate = dateFormat.format(currentDate);
+        // create borrowing
+        // first argument is current date in string
+        // second argument is reader, who was selected by user and wants to make a borrowing
+        // in third argument program creates arraylist from all books, which are reserved for this reader
+        BorrowingRecord borrowingRecord = new BorrowingRecord(
+                stringDate,
+                SceneManager.selectedReader,
+                new ArrayList<>(reservedBooksByReader)
+        );
+        // add new borrowing record to all borrowing records and serialize data
+        SerializationPattern.getInstance().addNewBorrowingRecord(borrowingRecord);
+        // show success pop up, because new borrowing record was successfully created
+        PopUps.showSuccessPopUp("Success", "New borrowing record was successfully created");
+        // log info about successfull creation
+        LOGGER.info("Borrowing was successfully created");
+        // go back to all borrowings scene
+        this.librarianBorrowings(event);
     }
 
     public void getAllAvailableBooks() {

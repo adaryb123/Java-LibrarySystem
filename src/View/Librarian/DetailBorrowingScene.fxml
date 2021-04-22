@@ -58,27 +58,6 @@
                 <Insets bottom="25.0" left="65.0" right="65.0" top="25.0" />
             </BorderPane.margin>
             <children>
-                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2">
-                    <children>
-                        <Label text="%all_available_book_copies">
-                            <font>
-                                <Font name="System Bold" size="24.0" />
-                            </font>
-                        </Label>
-                        <TableView fx:id="allAvailableBooksTableView" prefHeight="593.0" prefWidth="1224.0">
-                            <columns>
-                                <TableColumn fx:id="allBookIdCol" prefWidth="190.0" text="%book_id_col" />
-                                <TableColumn fx:id="allBookAuthorCol" prefWidth="190.0" text="%author_col" />
-                                <TableColumn fx:id="allBookNameCol" prefWidth="190.0" text="%book_name_col" />
-                                <TableColumn fx:id="allBookPublisherCol" prefWidth="190.0" text="%publisher_col" />
-                                <TableColumn fx:id="allBookStateCol" prefWidth="190.0" text="%book_state_col" />
-                            </columns>
-                        </TableView>
-                    </children>
-                    <GridPane.margin>
-                        <Insets top="10.0" />
-                    </GridPane.margin>
-                </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                     <children>
                         <Label text="%books_for_borrowing">
@@ -100,21 +79,9 @@
                         <Insets top="10.0" />
                     </GridPane.margin>
                 </VBox>
-                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                    <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#addSelectedBook" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #28a745;" text="%add_book_btn" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Button>
-                    </children>
-                    <GridPane.margin>
-                        <Insets top="45.0" />
-                    </GridPane.margin>
-                </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#removeSelectedBook" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #dc3545;" text="%remove_book_btn" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #dc3545;" text="%remove_book_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
@@ -142,7 +109,7 @@
                         <Insets left="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#createBorrowingScene" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%back_btn" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#librarianBorrowings" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%back_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
@@ -154,7 +121,7 @@
                         <Insets right="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#createBorrowing" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_borrowing_btn" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_borrowing_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>

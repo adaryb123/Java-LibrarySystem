@@ -2,6 +2,7 @@ package Controller.Librarian;
 
 import Controller.SceneManager;
 import Model.BorrowingRecord;
+import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -65,8 +66,17 @@ public class BorrowingsController extends LibrarianController implements Initial
         SceneManager.switchScene(event, SceneManager.CREATE_BORROWING_SCENE, true);
     }
 
-    public void detailBorrowingScene() {
+    public void detailBorrowingScene(MouseEvent event) {
+        // firstly check if user selected borrowing, which he wants to display in detail
+        if (borrowingsTableView.getSelectionModel().getSelectedItem() == null) {
+            // program displays error popup, because user didn't select any borrowing
+            PopUps.showErrorPopUp("Error", "You have to select borrowing, which you want to display in detail.");
+            return;
+        }
+        // get selected borrowing and store borrowing record in SceneManager,
+        // to make it accessible from anywhere
+        SceneManager.selectedBorrowingRecord = borrowingsTableView.getSelectionModel().getSelectedItem();
         // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
-
+        SceneManager.switchScene(event, SceneManager.DETAIL_BORROWING_SCENE, true);
     }
 }

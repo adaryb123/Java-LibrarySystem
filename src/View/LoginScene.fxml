@@ -160,7 +160,7 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="languageComboBox" onAction="#setLanguage" prefHeight="44.0" promptText="%selected_language_label" prefWidth="275.0" style="-fx-font-size: 20px;" />
+                        <ComboBox fx:id="languageComboBox" onAction="#setLanguage" prefHeight="44.0" prefWidth="275.0" promptText="%selected_language_label" style="-fx-font-size: 20px;" />
                      </children>
                   </VBox>
                </children>

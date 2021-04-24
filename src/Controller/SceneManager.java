@@ -1,5 +1,7 @@
 package Controller;
 import Controller.Librarian.*;
+import Controller.Reader.MyBooksController;
+import Controller.Reader.SearchBooksController;
 import Model.BookTitle;
 import Model.BorrowingRecord;
 import Model.Reader;
@@ -37,6 +39,8 @@ public abstract class SceneManager {
     public static final String EDIT_BOOK_TITLE_SCENE = "EditBookTitleScene";
     public static final String EDIT_READER_SCENE = "EditReaderScene";
     public static final String DETAIL_BORROWING_SCENE = "DetailBorrowingScene";
+    public static final String MY_BOOKS_SCENE = "MyBooksScene";
+    public static final String SEARCH_BOOKS_SCENE = "SearchBooksScene";
 
     // this reader is needed when creating new borrowing and on reader detail/edit
     public static Reader selectedReader = null;
@@ -90,6 +94,26 @@ public abstract class SceneManager {
         SceneManager.makeSwitch(fxmlLoader, window, fileName);
     }
 
+    //when we need to access the controller of new scene, in order to set some variables (example : CURRENT USER)
+    public static FXMLLoader switchSceneWithReturn(MouseEvent event, String fileName,boolean librarianSceneFlag) {
+        FXMLLoader fxmlLoader;
+        // if this condition is true, stage will be switching only librarian's scenes
+        // otherwise it will be switching only reader's scenes.
+        // there is important difference in path, which goes to getResource method
+        // localization and language will be set by resourceBundle when creating a new FXMLLoader
+        if (librarianSceneFlag) {
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/librarian/" + fileName + ".fxml"), resourceBundle);
+        } else {
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/reader/" + fileName + ".fxml"), resourceBundle);
+        }
+
+        // get stage before makeSwitch method
+        // otherwise we will have to make more overloading
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SceneManager.makeSwitch(fxmlLoader, window, fileName);
+        return fxmlLoader;
+    }
+
     // make switch scene
     public static void makeSwitch(FXMLLoader fxmlLoader, Stage window, String fileName) {
         try {
@@ -132,6 +156,10 @@ public abstract class SceneManager {
                 return new EditReaderController();
             case DETAIL_BORROWING_SCENE:
                 return new DetailBorrowingController();
+            case MY_BOOKS_SCENE:
+                return new MyBooksController();
+            case SEARCH_BOOKS_SCENE:
+                return new SearchBooksController();
         }
 
         return null;

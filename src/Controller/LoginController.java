@@ -1,13 +1,20 @@
 package Controller;
 
+import Controller.Reader.ReaderController;
+import Model.Reader;
+import PopUps.PopUps;
+import Serialization.SerializationPattern;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -18,6 +25,15 @@ public class LoginController implements Initializable {
 
     @FXML
     private ComboBox<String> languageComboBox;
+
+    @FXML
+    private TextField tfUserName;
+
+    @FXML
+    private TextField tfPassword;
+
+    @FXML
+    private TextField tfReaderId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,6 +55,16 @@ public class LoginController implements Initializable {
     // on mouse click check reader's ID and login as a reader
     public void loginAsReader(MouseEvent event) {
         // parameter librarianSceneFlag has to be false, because we are switching to one of the reader's scenes
+        ArrayList<Reader> allReaders = SerializationPattern.getInstance().getSerializationObject().getAllReaders();
+        for (Reader r : allReaders) {
+            if (r.getReadersCard().getId() == Integer.parseInt(tfReaderId.getText().toString())){
+                FXMLLoader fxmlLoader = SceneManager.switchSceneWithReturn(event, SceneManager.MY_BOOKS_SCENE, false);
+                ReaderController readerController = fxmlLoader.getController();
+                readerController.setCurrentReader(r);
+                return;
+            }
+        }
+        PopUps.showErrorPopUp("Error", "Invalid reader ID");
     }
 
     // this method quit whole program

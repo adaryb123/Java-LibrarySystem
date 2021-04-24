@@ -35,9 +35,6 @@ public class MyBooksController extends ReaderController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        for (BookCopy bk : SceneManager.currentReader.getBorrowedBooks())
-            System.out.println(bk.getBookTitle());
-
         reservedBooks = FXCollections.observableArrayList(SceneManager.currentReader.getReservedBooks());
         borrowedBooks = FXCollections.observableArrayList(SceneManager.currentReader.getBorrowedBooks());
 

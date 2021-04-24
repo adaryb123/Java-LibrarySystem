@@ -48,6 +48,8 @@ public abstract class SceneManager {
     public static BookTitle selectedBookTitle = null;
     // this borrowing record is needed for displaying it's detail in DetailBorrowingScene
     public static BorrowingRecord selectedBorrowingRecord = null;
+    // current reader that is logged in
+    public static Reader currentReader = null;
 
     // each scene will have ResourceBundle for localization and internationalization
     public static ResourceBundle resourceBundle;
@@ -92,26 +94,6 @@ public abstract class SceneManager {
         // otherwise we will have to make more overloading
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SceneManager.makeSwitch(fxmlLoader, window, fileName);
-    }
-
-    //when we need to access the controller of new scene, in order to set some variables (example : CURRENT USER)
-    public static FXMLLoader switchSceneWithReturn(MouseEvent event, String fileName,boolean librarianSceneFlag) {
-        FXMLLoader fxmlLoader;
-        // if this condition is true, stage will be switching only librarian's scenes
-        // otherwise it will be switching only reader's scenes.
-        // there is important difference in path, which goes to getResource method
-        // localization and language will be set by resourceBundle when creating a new FXMLLoader
-        if (librarianSceneFlag) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/librarian/" + fileName + ".fxml"), resourceBundle);
-        } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/reader/" + fileName + ".fxml"), resourceBundle);
-        }
-
-        // get stage before makeSwitch method
-        // otherwise we will have to make more overloading
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SceneManager.makeSwitch(fxmlLoader, window, fileName);
-        return fxmlLoader;
     }
 
     // make switch scene

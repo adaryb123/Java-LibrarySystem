@@ -12,16 +12,6 @@ import java.util.ResourceBundle;
 
 public class ReaderController implements Initializable {
 
-    private Reader currentReader;
-
-    public void setCurrentReader(Reader reader){
-
-    }
-
-    public Reader getCurrentReader(){
-        return currentReader;
-    }
-
     public void readerMyBooks(MouseEvent event) {
         // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
         SceneManager.switchScene(event ,SceneManager.MY_BOOKS_SCENE, false);

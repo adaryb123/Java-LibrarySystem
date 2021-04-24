@@ -1,13 +1,11 @@
 package Controller;
 
-import Controller.Reader.ReaderController;
 import Model.Reader;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -57,10 +55,9 @@ public class LoginController implements Initializable {
         // parameter librarianSceneFlag has to be false, because we are switching to one of the reader's scenes
         ArrayList<Reader> allReaders = SerializationPattern.getInstance().getSerializationObject().getAllReaders();
         for (Reader r : allReaders) {
-            if (r.getReadersCard().getId() == Integer.parseInt(tfReaderId.getText().toString())){
-                FXMLLoader fxmlLoader = SceneManager.switchSceneWithReturn(event, SceneManager.MY_BOOKS_SCENE, false);
-                ReaderController readerController = fxmlLoader.getController();
-                readerController.setCurrentReader(r);
+            if (r.getReadersCard().getId() == Integer.parseInt(tfReaderId.getText())){
+                SceneManager.currentReader = r;
+                SceneManager.switchScene(event, SceneManager.MY_BOOKS_SCENE, false);
                 return;
             }
         }

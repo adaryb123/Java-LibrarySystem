@@ -132,6 +132,12 @@ public class ChooseBooksBorrowingController extends BorrowingsController impleme
         );
         // add new borrowing record to all borrowing records and serialize data
         SerializationPattern.getInstance().addNewBorrowingRecord(borrowingRecord);
+
+        //save the borrowed books to current readers arraylist
+        Reader selectedReader = SceneManager.selectedReader;
+        selectedReader.setBorrowedBooks( new ArrayList<>(reservedBooksByReader));
+        SerializationPattern.getInstance().serializeData();
+
         // show success pop up, because new borrowing record was successfully created
         PopUps.showSuccessPopUp("Success", "New borrowing record was successfully created");
         // log info about successfull creation

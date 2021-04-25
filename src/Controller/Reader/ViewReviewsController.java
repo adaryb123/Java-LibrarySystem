@@ -1,5 +1,6 @@
 package Controller.Reader;
 
+import Controller.Librarian.ChooseBooksBorrowingController;
 import Controller.SceneManager;
 import Model.BookCopy;
 import Model.BookTitle;
@@ -17,10 +18,13 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.logging.Logger;
 
 public class ViewReviewsController extends SearchBooksController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(ViewReviewsController.class.getName());
+
+
     @FXML
     private VBox VBoxItemHolder;
 

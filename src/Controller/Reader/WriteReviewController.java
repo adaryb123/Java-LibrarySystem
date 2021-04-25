@@ -1,5 +1,6 @@
 package Controller.Reader;
 
+import Controller.Librarian.ChooseBooksBorrowingController;
 import Controller.SceneManager;
 import Model.BorrowingRecord;
 import Model.Review;
@@ -19,10 +20,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.logging.Logger;
 
 public class WriteReviewController extends SearchBooksController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(WriteReviewController.class.getName());
+
+
     @FXML
     private Label authorLabel;
 

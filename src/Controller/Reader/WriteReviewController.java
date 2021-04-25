@@ -37,7 +37,7 @@ public class WriteReviewController extends SearchBooksController implements Init
 
     @FXML
     void createReview(MouseEvent event) {
-
+        //get current date to string
         Date currentDate = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String stringDate = dateFormat.format(currentDate);
@@ -49,7 +49,7 @@ public class WriteReviewController extends SearchBooksController implements Init
                 SceneManager.selectedBookTitleReader,
                 SceneManager.currentReader
         );
-        // add new borrowing record to all borrowing records and serialize data
+        // add new review to all reviews and serialize data
         SerializationPattern.getInstance().addNewReview(review);
         ArrayList<Review> selectedBookReviews = SceneManager.selectedBookTitleReader.getReviews();
         selectedBookReviews.add(review);

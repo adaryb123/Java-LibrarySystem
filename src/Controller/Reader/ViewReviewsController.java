@@ -28,16 +28,21 @@ public class ViewReviewsController extends SearchBooksController implements Init
 
     @FXML
     void reserve(MouseEvent event) {
+
+        //add the first available bookcopy to users list of reserved books
         for (BookCopy bc : SceneManager.selectedBookTitleReader.getAllBookCopies()){
             if(bc.getStatus() == BookCopy.Status.AVAILABLE){
                 ArrayList<BookCopy> readersReservedBooks = SceneManager.currentReader.getReservedBooks();
                 readersReservedBooks.add(bc);
+                //set the book copy status to reserved
                 bc.setStatus(BookCopy.Status.RESERVED);
+                //save changes
                 SerializationPattern.getInstance().serializeData();
                 // show success pop up, because new borrowing record was successfully created
                 PopUps.showSuccessPopUp("Success", "Book reserved");
-                // log info about successfull creation
+                // log info about successful creation
                 LOGGER.info("Book reserved");
+
                 return;
             }
         }
@@ -47,10 +52,13 @@ public class ViewReviewsController extends SearchBooksController implements Init
     public void initialize(URL location, ResourceBundle resources) {
         VBoxItemHolder.getChildren().clear();
 
+        //the reviews will be visible in scrollable window of items
         for (Review r : SceneManager.selectedBookTitleReader.getReviews()) {
             AnchorPane itemPane = new AnchorPane();
+            //ItemReview.fxml is container for each item == review
             FXMLLoader fxmlLoader = SceneManager.switchListingPane(itemPane, "ItemReview",false);
             ItemReviewController controller = fxmlLoader.getController();
+            //set container labels to those of current review
             controller.setReview(r);
             listingItems.add(itemPane);
         }

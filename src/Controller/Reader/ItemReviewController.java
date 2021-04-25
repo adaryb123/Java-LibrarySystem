@@ -25,6 +25,7 @@ public class ItemReviewController {
     }
 
     public void setReview(Review review) {
+        //set labels to show review content
         this.review = review;
         readerNameLabel.setText(review.getReader().getReadersCard().getReaderName());
         reviewTextLabel.setText(review.getReviewText());

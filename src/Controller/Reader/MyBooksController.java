@@ -32,23 +32,29 @@ public class MyBooksController extends ReaderController implements Initializable
 
     @FXML
     void removeSelectedReservedBook(MouseEvent event) {
+        //show error message if no book is selected
         if (reservedBooksTableView.getSelectionModel().getSelectedItem() == null) {
             PopUps.showErrorPopUp("Select book", "You have to select book first.");
             return;
         }
 
+        //remove selected book from observable list
         BookCopy selectedBook = reservedBooksTableView.getSelectionModel().getSelectedItem();
         reservedBooks.remove(selectedBook);
+        // set book status available
         selectedBook.setStatus(BookCopy.Status.AVAILABLE);
+        //remove selected book from readers reserved books list
         ArrayList<BookCopy> storedBooks = SceneManager.currentReader.getReservedBooks();
         storedBooks.remove(selectedBook);
         SceneManager.currentReader.setReservedBooks(storedBooks);
+        //save changes
         SerializationPattern.getInstance().serializeData();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //initialize both tables with current readers list of borrowed and reserved books
         reservedBooks = FXCollections.observableArrayList(SceneManager.currentReader.getReservedBooks());
         borrowedBooks = FXCollections.observableArrayList(SceneManager.currentReader.getBorrowedBooks());
 

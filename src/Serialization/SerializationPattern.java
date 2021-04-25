@@ -129,6 +129,13 @@ public class SerializationPattern {
         this.serializeData();
     }
 
+    public void removeBorrowing(BorrowingRecord removeBorrowingRecord) {
+        // remove removeBorrowingRecord from arraylist with all borrowing records
+        this.getSerializationObject().getAllBorrowingRecords().remove(removeBorrowingRecord);
+        // serialize data, because borrowing record was removed
+        this.serializeData();
+    }
+
     public ObjectForSerialization getSerializationObject() {
         return serializationObject;
     }

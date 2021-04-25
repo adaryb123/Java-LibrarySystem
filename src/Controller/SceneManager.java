@@ -3,6 +3,7 @@ import Controller.Librarian.*;
 import Controller.Reader.MyBooksController;
 import Controller.Reader.SearchBooksController;
 import Controller.Reader.ViewReviewsController;
+import Controller.Reader.WriteReviewController;
 import Model.BookTitle;
 import Model.BorrowingRecord;
 import Model.Reader;
@@ -44,6 +45,7 @@ public abstract class SceneManager {
     public static final String MY_BOOKS_SCENE = "MyBooksScene";
     public static final String SEARCH_BOOKS_SCENE = "SearchBooksScene";
     public static final String VIEW_REVIEWS_SCENE = "ViewReviewsScene";
+    public static final String ADD_REVIEW_SCENE = "WriteReviewScene";
 
     // this reader is needed when creating new borrowing and on reader detail/edit
     public static Reader selectedReader = null;
@@ -172,6 +174,8 @@ public abstract class SceneManager {
                 return new SearchBooksController();
             case VIEW_REVIEWS_SCENE:
                 return new ViewReviewsController();
+            case ADD_REVIEW_SCENE:
+                return new WriteReviewController();
         }
 
         return null;

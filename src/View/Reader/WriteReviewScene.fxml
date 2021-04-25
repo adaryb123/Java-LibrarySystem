@@ -15,34 +15,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1354.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1354.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="45.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
-            <children>
-                <Button mnemonicParsing="false" onMouseClicked="#librarianBorrowings" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%borrowings_btn" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%readers_btn" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#booksEvidence" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%books_evidence_btn" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%log_out_btn" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                </Button>
-            </children>
             <padding>
                 <Insets left="65.0" right="65.0" />
             </padding>
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#readerMyBooks" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%my_books_btn" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#readerSearchBooks" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%search_books_btn" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%log_out_btn" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Button>
+         </children>
         </HBox>
     </top>
     <center>
@@ -57,26 +52,26 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="314.0" prefWidth="685.0">
                            <children>
-                              <Label alignment="CENTER" text="%author_label">
+                              <Label fx:id="authorLabel" alignment="CENTER" text="%author_label">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" text="%book_title_label">
+                              <Label fx:id="bookTitleLabel" alignment="CENTER" text="%book_title_label">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="234.0" prefWidth="531.0">
+                        <VBox alignment="CENTER" prefHeight="314.0" prefWidth="397.0">
                            <children>
                               <Label alignment="CENTER" text="%stars_num_label">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Spinner prefHeight="50.0" prefWidth="222.0" />
+                              <Spinner fx:id="starsNumSpinner" prefHeight="50.0" prefWidth="222.0" />
                            </children>
                         </VBox>
                      </children>
@@ -84,18 +79,27 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-                  <ScrollPane hbarPolicy="NEVER">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="334.0" prefWidth="1147.0">
                      <content>
-                        <TextArea prefHeight="334.0" prefWidth="1188.0" text="Enter review text here">
+                        <TextArea fx:id="reviewTextArea" prefHeight="334.0" prefWidth="1202.0" promptText="Enter review text here">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </TextArea>
                      </content>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </ScrollPane>
                </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </VBox>
          </children>
+         <padding>
+            <Insets bottom="65.0" top="65.0" />
+         </padding>
       </AnchorPane>
     </center>
     <bottom>
@@ -113,7 +117,7 @@
                         <Insets left="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#librarianReaders" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%back_btn" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#readerSearchBooks" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%back_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
@@ -125,7 +129,7 @@
                         <Insets right="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#createReader" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_btn" textFill="WHITE">
+                        <Button mnemonicParsing="false" onMouseClicked="#createReview" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%create_btn" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>

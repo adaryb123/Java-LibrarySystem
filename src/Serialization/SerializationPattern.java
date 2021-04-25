@@ -29,6 +29,7 @@ public class SerializationPattern {
         private final ArrayList<BorrowingRecord> allBorrowingRecords;
         private final ArrayList<BookTitle> allBookTitles;
         private final ArrayList<BookCopy> allBookCopies;
+        private final ArrayList<Review> allReviews;
 
         public ObjectForSerialization() {
             this.allLibrarians = new ArrayList<>();
@@ -36,6 +37,7 @@ public class SerializationPattern {
             this.allBorrowingRecords = new ArrayList<>();
             this.allBookTitles = new ArrayList<>();
             this.allBookCopies = new ArrayList<>();
+            this.allReviews = new ArrayList<>();
         }
 
         public ArrayList<Librarian> getAllLibrarians() {
@@ -57,6 +59,8 @@ public class SerializationPattern {
         public ArrayList<BookCopy> getAllBookCopies() {
             return allBookCopies;
         }
+
+        public ArrayList<Review> getAllReviews() { return allReviews; }
     }
 
     // when unique SerializationPattern object is created, program deserialize it's data
@@ -133,6 +137,13 @@ public class SerializationPattern {
         // remove removeBorrowingRecord from arraylist with all borrowing records
         this.getSerializationObject().getAllBorrowingRecords().remove(removeBorrowingRecord);
         // serialize data, because borrowing record was removed
+        this.serializeData();
+    }
+
+    public void addNewReview(Review newReview) {
+        // add newReview to arraylist with all reviews
+        this.getSerializationObject().getAllReviews().add(newReview);
+        // serialize data, because new review was added
         this.serializeData();
     }
 

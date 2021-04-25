@@ -15,31 +15,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ViewReviewsController extends ReaderController implements Initializable {
+public class ViewReviewsController extends SearchBooksController implements Initializable {
     @FXML
     private VBox VBoxItemHolder;
 
     private ArrayList<AnchorPane> listingItems = new ArrayList<>();
-
-    @FXML
-    void addReview(MouseEvent event) {
-
-    }
-
-    @FXML
-    void reserve(MouseEvent event) {
-
-    }
-
-    @FXML
-    void viewDetail(MouseEvent event) {
-
-    }
-
-    @FXML
-    void viewReviews(MouseEvent event) {
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

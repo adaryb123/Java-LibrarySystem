@@ -3,6 +3,7 @@ package Controller.Librarian;
 import Controller.SceneManager;
 import Model.BookCopy;
 import Model.BorrowingRecord;
+import Model.Reader;
 import Model.ReadersCard;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
@@ -73,6 +74,8 @@ public class DetailBorrowingController extends ChooseBooksBorrowingController im
         borrowedBooks.remove(returnBook);
         // make book available for next borrowings
         returnBook.setStatus(BookCopy.Status.AVAILABLE);
+        //remove book from readers list of borrowed books
+        borrowingRecord.getReader().getBorrowedBooks().remove(returnBook);
         // serialize changes
         SerializationPattern.getInstance().serializeData();
         // refresh table to display books, which are still borrowed in this borrowing record
@@ -89,6 +92,8 @@ public class DetailBorrowingController extends ChooseBooksBorrowingController im
         // make each book from this borrowing record available again
         for (BookCopy bookCopy : borrowingRecord.getBooks()) {
             bookCopy.setStatus(BookCopy.Status.AVAILABLE);
+            //remove book from readers list of borrowed books
+            borrowingRecord.getReader().getBorrowedBooks().remove(bookCopy);
         }
         // after that serialize changes again
         SerializationPattern.getInstance().serializeData();

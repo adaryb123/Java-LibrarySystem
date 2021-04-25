@@ -30,7 +30,12 @@ public class SearchBooksController extends ReaderController implements Initializ
 
     @FXML
     void addReview(MouseEvent event) {
-
+        if (booksTableView.getSelectionModel().getSelectedItem() == null) {
+            PopUps.showErrorPopUp("Select book", "You have to select book first.");
+            return;
+        }
+        SceneManager.selectedBookTitleReader = booksTableView.getSelectionModel().getSelectedItem();
+        SceneManager.switchScene(event, SceneManager.ADD_REVIEW_SCENE, false);
     }
 
     @FXML

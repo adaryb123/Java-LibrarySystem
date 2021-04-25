@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="305.0" prefWidth="851.0" style="-fx-background-color: #5500ff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Reader.ItemReviewController">
+   <children>
+      <AnchorPane layoutX="29.0" layoutY="25.0" prefHeight="254.0" prefWidth="765.0" style="-fx-background-color: #69d943;">
+         <children>
+            <Label fx:id="labelReviewText" alignment="CENTER" layoutX="218.0" layoutY="65.0" prefHeight="195.0" prefWidth="566.0" text="REVIEW TEXT" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelReaderName" layoutX="218.0" layoutY="16.0" prefHeight="27.0" prefWidth="566.0" text="READER NAME" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

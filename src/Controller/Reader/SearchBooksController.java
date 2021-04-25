@@ -4,6 +4,7 @@ import Controller.SceneManager;
 import Model.BookCopy;
 import Model.BookTitle;
 import Model.Review;
+import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -44,7 +45,12 @@ public class SearchBooksController extends ReaderController implements Initializ
 
     @FXML
     void viewReviews(MouseEvent event) {
-
+        if (booksTableView.getSelectionModel().getSelectedItem() == null) {
+            PopUps.showErrorPopUp("Select book", "You have to select book first.");
+            return;
+        }
+        SceneManager.selectedBookTitleReader = booksTableView.getSelectionModel().getSelectedItem();
+        SceneManager.switchScene(event, SceneManager.VIEW_REVIEWS_SCENE, false);
     }
 
     public double calculateAvgRating(BookTitle bookTitle){

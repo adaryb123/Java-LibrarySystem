@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1354.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="45.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onMouseClicked="#readerMyBooks" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%my_books_btn" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onMouseClicked="#readerSearchBooks" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%search_books_btn" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+                <Button mnemonicParsing="false" onMouseClicked="#logout" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #B22222;" text="%log_out_btn" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Button>
+            </children>
+            <padding>
+                <Insets left="65.0" right="65.0" />
+            </padding>
+        </HBox>
+    </top>
+    <bottom>
+        <GridPane prefHeight="100.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="45.0">
+                    <GridPane.margin>
+                        <Insets left="65.0" right="65.0" />
+                    </GridPane.margin>
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#viewDetail" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%detail_btn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#viewReviews" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%view_reviews_btn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#addReview" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%add_review_btn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onMouseClicked="#reserve" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%reserve_btn" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </bottom>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="900.7999877929688" minWidth="10.0" prefWidth="890.4000366210937" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.7999877929688" minWidth="10.0" prefWidth="334.39996337890625" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="65.0" right="65.0" top="25.0" />
+         </BorderPane.margin>
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="530.0" prefWidth="891.0" style="-fx-background-color: #5500ff;">
+               <content>
+                  <AnchorPane prefHeight="100.0" prefWidth="861.0" style="-fx-background-color: #5500ff;">
+                     <children>
+                        <VBox fx:id="VBoxItemHolder" prefHeight="200.0" prefWidth="100.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

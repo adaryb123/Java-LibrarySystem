@@ -2,6 +2,7 @@ package Controller;
 import Controller.Librarian.*;
 import Controller.Reader.MyBooksController;
 import Controller.Reader.SearchBooksController;
+import Controller.Reader.ViewReviewsController;
 import Model.BookTitle;
 import Model.BorrowingRecord;
 import Model.Reader;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import Main.Main;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ResourceBundle;
@@ -41,6 +43,7 @@ public abstract class SceneManager {
     public static final String DETAIL_BORROWING_SCENE = "DetailBorrowingScene";
     public static final String MY_BOOKS_SCENE = "MyBooksScene";
     public static final String SEARCH_BOOKS_SCENE = "SearchBooksScene";
+    public static final String VIEW_REVIEWS_SCENE = "ViewReviewsScene";
 
     // this reader is needed when creating new borrowing and on reader detail/edit
     public static Reader selectedReader = null;
@@ -50,6 +53,8 @@ public abstract class SceneManager {
     public static BorrowingRecord selectedBorrowingRecord = null;
     // current reader that is logged in
     public static Reader currentReader = null;
+    // selected book title in readers screen
+    public static BookTitle selectedBookTitleReader = null;
 
     // each scene will have ResourceBundle for localization and internationalization
     public static ResourceBundle resourceBundle;
@@ -94,6 +99,29 @@ public abstract class SceneManager {
         // otherwise we will have to make more overloading
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SceneManager.makeSwitch(fxmlLoader, window, fileName);
+    }
+
+    //for loading dynamic review pane in ViewReviewsScene
+    public static FXMLLoader switchListingPane(Pane parentPane, String fileName,boolean librarianSceneFlag){
+        FXMLLoader fxmlLoader;
+        // if this condition is true, stage will be switching only librarian's scenes
+        // otherwise it will be switching only reader's scenes.
+        // there is important difference in path, which goes to getResource method
+        // localization and language will be set by resourceBundle when creating a new FXMLLoader
+        if (librarianSceneFlag) {
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/librarian/" + fileName + ".fxml"), resourceBundle);
+        } else {
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/reader/" + fileName + ".fxml"), resourceBundle);
+        }
+        try{
+            Pane childPane = fxmlLoader.load();
+            parentPane.getChildren().clear();
+            parentPane.getChildren().add(childPane);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return fxmlLoader;
     }
 
     // make switch scene
@@ -142,6 +170,8 @@ public abstract class SceneManager {
                 return new MyBooksController();
             case SEARCH_BOOKS_SCENE:
                 return new SearchBooksController();
+            case VIEW_REVIEWS_SCENE:
+                return new ViewReviewsController();
         }
 
         return null;

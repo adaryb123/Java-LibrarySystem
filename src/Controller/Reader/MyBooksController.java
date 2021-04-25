@@ -3,6 +3,8 @@ package Controller.Reader;
 import Controller.SceneManager;
 import Model.BookCopy;
 import Model.BookTitle;
+import PopUps.PopUps;
+import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MyBooksController extends ReaderController implements Initializable {
@@ -29,7 +32,18 @@ public class MyBooksController extends ReaderController implements Initializable
 
     @FXML
     void removeSelectedReservedBook(MouseEvent event) {
+        if (reservedBooksTableView.getSelectionModel().getSelectedItem() == null) {
+            PopUps.showErrorPopUp("Select book", "You have to select book first.");
+            return;
+        }
 
+        BookCopy selectedBook = reservedBooksTableView.getSelectionModel().getSelectedItem();
+        reservedBooks.remove(selectedBook);
+        selectedBook.setStatus(BookCopy.Status.AVAILABLE);
+        ArrayList<BookCopy> storedBooks = SceneManager.currentReader.getReservedBooks();
+        storedBooks.remove(selectedBook);
+        SceneManager.currentReader.setReservedBooks(storedBooks);
+        SerializationPattern.getInstance().serializeData();
     }
 
     @Override

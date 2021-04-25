@@ -16,7 +16,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class SearchBooksController extends ReaderController implements Initializable {
 
@@ -40,7 +43,31 @@ public class SearchBooksController extends ReaderController implements Initializ
 
     @FXML
     void reserve(MouseEvent event) {
+        if (booksTableView.getSelectionModel().getSelectedItem() == null) {
+            PopUps.showErrorPopUp("Select book", "You have to select book first.");
+            return;
+        }
 
+        if (!isAvailable(booksTableView.getSelectionModel().getSelectedItem()).equals("YES")) {
+            PopUps.showErrorPopUp("Unavailable book", "Selected book is not available right now.");
+            return;
+        }
+
+        SceneManager.selectedBookTitleReader = booksTableView.getSelectionModel().getSelectedItem();
+        for (BookCopy bc : SceneManager.selectedBookTitleReader.getAllBookCopies()){
+            if(bc.getStatus() == BookCopy.Status.AVAILABLE){
+                ArrayList<BookCopy> readersReservedBooks = SceneManager.currentReader.getReservedBooks();
+                readersReservedBooks.add(bc);
+                bc.setStatus(BookCopy.Status.RESERVED);
+                SerializationPattern.getInstance().serializeData();
+                // show success pop up, because new borrowing record was successfully created
+                PopUps.showSuccessPopUp("Success", "Book reserved");
+                // log info about successfull creation
+                LOGGER.info("Book reserved");
+
+                return;
+            }
+        }
     }
 
     @FXML
@@ -63,7 +90,7 @@ public class SearchBooksController extends ReaderController implements Initializ
 
     public String isAvailable(BookTitle bookTitle){
         for (BookCopy c : bookTitle.getAllBookCopies()) {
-            if (c.isAvailable() == BookCopy.Status.AVAILABLE)
+            if (c.getStatus() == BookCopy.Status.AVAILABLE)
                 return "YES";
         }
         return "NO";

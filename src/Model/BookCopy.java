@@ -43,14 +43,6 @@ public class BookCopy implements Serializable {
         this.id = id;
     }
 
-    public Status isAvailable() {
-        return status;
-    }
-
-    public void setAvailable(Status status) {
-       this.status = status;
-    }
-
     public Status getStatus() {
         return status;
     }

@@ -4,6 +4,7 @@ import Controller.Reader.MyBooksController;
 import Controller.Reader.SearchBooksController;
 import Controller.Reader.ViewReviewsController;
 import Controller.Reader.WriteReviewController;
+import Model.BookCopy;
 import Model.BookTitle;
 import Model.BorrowingRecord;
 import Model.Reader;
@@ -57,6 +58,8 @@ public abstract class SceneManager {
     public static Reader currentReader = null;
     // selected book title in readers screen
     public static BookTitle selectedBookTitleReader = null;
+    //selected reserved book copy in readers screen;
+    public static BookCopy selecteedBookCopy = null;
 
     // each scene will have ResourceBundle for localization and internationalization
     public static ResourceBundle resourceBundle;

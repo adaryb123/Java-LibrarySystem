@@ -154,7 +154,7 @@ public class ChooseBooksBorrowingController extends BorrowingsController impleme
 
         for (BookCopy bookCopy : allBooks) {
             // add only available books allAvailableBooks arraylist
-            if (bookCopy.isAvailable() == BookCopy.Status.AVAILABLE) {
+            if (bookCopy.getStatus() == BookCopy.Status.AVAILABLE) {
                 this.allAvailableBooks.add(bookCopy);
             }
         }

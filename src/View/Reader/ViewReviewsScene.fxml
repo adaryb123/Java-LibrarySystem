@@ -40,7 +40,7 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" prefHeight="530.0" prefWidth="891.0" style="-fx-background-color: #FFF8DC;" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane prefHeight="250.0" prefWidth="1097.0" style="-fx-background-color: #FFF8DC;">
+            <AnchorPane prefHeight="574.0" prefWidth="1098.0" style="-fx-background-color: #FFF8DC;">
                <children>
                   <VBox fx:id="VBoxItemHolder" prefHeight="200.0" prefWidth="100.0" />
                </children>

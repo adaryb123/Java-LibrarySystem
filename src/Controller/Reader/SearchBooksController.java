@@ -44,11 +44,6 @@ public class SearchBooksController extends ReaderController implements Initializ
     }
 
     @FXML
-    void viewDetail(MouseEvent event) {
-
-    }
-
-    @FXML
     void viewReviews(MouseEvent event) {
         if (booksTableView.getSelectionModel().getSelectedItem() == null) {
             PopUps.showErrorPopUp("Select book", "You have to select book first.");

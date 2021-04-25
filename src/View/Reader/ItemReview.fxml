@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="305.0" prefWidth="851.0" style="-fx-background-color: #5500ff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Reader.ItemReviewController">
+<AnchorPane prefHeight="305.0" prefWidth="1097.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Reader.ItemReviewController">
    <children>
-      <AnchorPane layoutX="29.0" layoutY="25.0" prefHeight="254.0" prefWidth="765.0" style="-fx-background-color: #69d943;">
+      <AnchorPane layoutX="29.0" layoutY="25.0" prefHeight="261.0" prefWidth="1032.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label fx:id="labelReviewText" alignment="CENTER" layoutX="218.0" layoutY="65.0" prefHeight="195.0" prefWidth="566.0" text="REVIEW TEXT" textFill="WHITE" wrapText="true">
+            <Label fx:id="reviewTextLabel" alignment="TOP_LEFT" layoutX="224.0" layoutY="7.0" prefHeight="253.0" prefWidth="568.0" text="REVIEW TEXT" wrapText="true">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelReaderName" layoutX="218.0" layoutY="16.0" prefHeight="27.0" prefWidth="566.0" text="READER NAME" textFill="WHITE" wrapText="true">
+            <Label fx:id="readerNameLabel" alignment="TOP_LEFT" layoutX="24.0" layoutY="14.0" prefHeight="66.0" prefWidth="198.0" text="READER NAME" wrapText="true">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateLabel" layoutX="24.0" layoutY="98.0" prefHeight="35.0" prefWidth="198.0" text="DATE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="starsNumLabel" layoutX="24.0" layoutY="212.0" prefHeight="35.0" prefWidth="198.0" text="STARS_NUM" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="169.0" text="%stars_label">
+               <font>
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
          </children>

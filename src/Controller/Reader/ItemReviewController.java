@@ -7,10 +7,16 @@ import javafx.scene.control.Label;
 public class ItemReviewController {
 
     @FXML
-    private Label labelReviewText;
+    private Label reviewTextLabel;
 
     @FXML
-    private Label labelReaderName;
+    private Label readerNameLabel;
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private Label starsNumLabel;
 
     private Review review;
 
@@ -20,7 +26,9 @@ public class ItemReviewController {
 
     public void setReview(Review review) {
         this.review = review;
-        labelReaderName.setText(review.getReader().getReadersCard().getReaderName());
-        labelReviewText.setText(review.getReviewText());
+        readerNameLabel.setText(review.getReader().getReadersCard().getReaderName());
+        reviewTextLabel.setText(review.getReviewText());
+        dateLabel.setText(review.getDate());
+        starsNumLabel.setText(String.valueOf(review.getStarsNum()));
     }
 }

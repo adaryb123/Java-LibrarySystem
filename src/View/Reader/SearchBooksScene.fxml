@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1354.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="870.0" prefWidth="1354.0" style="-fx-background-color: #FFF8DC;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="45.0" style="-fx-background-color: #FFDEAD;" BorderPane.alignment="CENTER">
             <children>
@@ -52,11 +52,6 @@
                         <Insets left="65.0" right="65.0" />
                     </GridPane.margin>
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#viewDetail" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%detail_btn" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Button>
                   <Button mnemonicParsing="false" onMouseClicked="#viewReviews" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%view_reviews_btn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
@@ -67,7 +62,7 @@
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#reserve" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #663E0A;" text="%reserve_btn" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#reserve" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #28a745;" text="%reserve_btn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>

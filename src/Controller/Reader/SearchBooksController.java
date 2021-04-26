@@ -11,17 +11,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class SearchBooksController extends ReaderController implements Initializable {
+
+    private static final Logger LOGGER = Logger.getLogger(ViewReviewsController.class.getName());
 
     @FXML
     private TableView<BookTitle> booksTableView;
@@ -30,6 +34,12 @@ public class SearchBooksController extends ReaderController implements Initializ
     private TableColumn<BookTitle, String> authorCol, bookNameCol,publisherCol,availableCol,publishYearCol,averageScoreCol;
 
     private ObservableList<BookTitle> bookTitles;
+
+    @FXML
+    private TextField searchTextField;
+
+    @FXML
+    private ChoiceBox<String> categoryChoiceBox;
 
     @FXML
     void addReview(MouseEvent event) {
@@ -109,6 +119,10 @@ public class SearchBooksController extends ReaderController implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        //clear text field
+        searchTextField.setText("");
+        //initialize choice box
+        categoryChoiceBox.getItems().addAll("Author name","Book title","Publisher");
         //initialize table view with all booktitles
         bookTitles = FXCollections.observableArrayList(SerializationPattern.getInstance().getSerializationObject().getAllBookTitles());
 
@@ -120,5 +134,38 @@ public class SearchBooksController extends ReaderController implements Initializ
         availableCol.setCellValueFactory(lambda -> new ReadOnlyStringWrapper(isAvailable(lambda.getValue())));
 
         booksTableView.setItems(bookTitles);
+    }
+
+    @FXML
+    void resetTable(MouseEvent event) {
+        booksTableView.setItems(bookTitles);
+    }
+
+    @FXML
+    void searchTable(MouseEvent event) {
+        if (searchTextField.getText().isEmpty()) {
+            PopUps.showErrorPopUp("No search text", "Enter something in the search field.");
+            return;
+        }
+
+        if (categoryChoiceBox.getSelectionModel().isEmpty()) {
+            PopUps.showErrorPopUp("No category selected", "Select category to search in.");
+            return;
+        }
+
+        String searchText = searchTextField.getText();
+        String category = categoryChoiceBox.getValue();
+        ArrayList<BookTitle> selectedBookTitles = new ArrayList<>();
+        for (BookTitle b : bookTitles){
+            if (category.equals("Author name") && b.getAuthorName().contains(searchText))
+                selectedBookTitles.add(b);
+            else if (category.equals("Book title") && b.getBookName().contains(searchText))
+                selectedBookTitles.add(b);
+            else if (category.equals("Publisher") && b.getPublisherName().contains(searchText))
+                selectedBookTitles.add(b);
+        }
+
+        ObservableList<BookTitle> observableBookTitles = FXCollections.observableArrayList(selectedBookTitles);
+        booksTableView.setItems(observableBookTitles);
     }
 }

@@ -1,11 +1,16 @@
 package Controller.Librarian;
 
 import Controller.SceneManager;
+import Model.BookCopy;
 import Model.BookTitle;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -22,17 +27,64 @@ public class EditBookTitleController extends CreateBookTitleController implement
     @FXML
     private TextField tfAuthorName, tfBookName, tfPublisher, tfPublishedYear;
 
+    @FXML
+    private TableView<BookCopy> bookCopiesTableView;
+    @FXML
+    private TableColumn<BookCopy, String> bookIdCol, bookStatusCol;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // if scene contains TextFields with ids tfAuthorName, tfBookName, tfPublisher, tfPublishedYear
         // then display selectedBookTitle data in them
-        if (tfAuthorName != null && tfBookName != null && tfPublisher != null && tfPublishedYear != null) {
+        if (bookCopiesTableView != null && tfAuthorName != null &&
+                tfBookName != null && tfPublisher != null && tfPublishedYear != null) {
             BookTitle selectedBookTitle = SceneManager.selectedBookTitle;
             tfAuthorName.setText(selectedBookTitle.getAuthorName());
             tfBookName.setText(selectedBookTitle.getBookName());
             tfPublisher.setText(selectedBookTitle.getPublisherName());
             tfPublishedYear.setText(String.valueOf(selectedBookTitle.getYearPublished()));
+
+            // map table columns on book copy methods
+            bookIdCol.setCellValueFactory(data -> new ReadOnlyStringWrapper(String.valueOf(data.getValue().getId())));
+            bookStatusCol.setCellValueFactory(data -> {
+                String value = "";
+                BookCopy.Status status = data.getValue().getStatus();
+                // create string value based on Status enum
+                if (status == BookCopy.Status.AVAILABLE) {
+                    value = "Available";
+                } else if (status == BookCopy.Status.BORROWED) {
+                    value = "Borrowed";
+                } else {
+                    value = "Reserved";
+                }
+
+                return new ReadOnlyStringWrapper(value);
+            });
+            // display book copies in table view
+            bookCopiesTableView.setItems(FXCollections.observableArrayList(selectedBookTitle.getAllBookCopies()));
         }
+    }
+
+    public void removeBookCopy() {
+        // if user didn't select book copy, which he/she wants to remove, then display error popup
+        if (bookCopiesTableView.getSelectionModel().getSelectedItem() == null) {
+            PopUps.showErrorPopUp("Error", "You have to select book copy, which you want to remove.");
+            return;
+        }
+        // get selected book copy
+        BookCopy selectedBookCopy = bookCopiesTableView.getSelectionModel().getSelectedItem();
+        // don't remove selected book copy, if it isn't available
+        if (selectedBookCopy.getStatus() != BookCopy.Status.AVAILABLE) {
+            PopUps.showErrorPopUp("Error", "You can't remove book, which is reserved or borrowed.");
+            return;
+        }
+        // remove book copy from selected book title
+        BookTitle selectedBookTitle = SceneManager.selectedBookTitle;
+        selectedBookTitle.getAllBookCopies().remove(selectedBookCopy);
+        // remove book copy from all book copies list and serialize changes
+        SerializationPattern.getInstance().removeBookCopy(selectedBookCopy);
+        // display new items in table view
+        bookCopiesTableView.setItems(FXCollections.observableArrayList(selectedBookTitle.getAllBookCopies()));
     }
 
     public void finishEditingBookTitle(MouseEvent event) {

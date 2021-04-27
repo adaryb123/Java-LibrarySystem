@@ -140,6 +140,13 @@ public class SerializationPattern {
         this.serializeData();
     }
 
+    public void removeBookCopy(BookCopy removeBookCopy) {
+        // remove removeBookCopy from arraylist with all book copies
+        this.getSerializationObject().getAllBookCopies().remove(removeBookCopy);
+        // serialize data, because book copy was removed
+        this.serializeData();
+    }
+
     public void addNewReview(Review newReview) {
         // add newReview to arraylist with all reviews
         this.getSerializationObject().getAllReviews().add(newReview);

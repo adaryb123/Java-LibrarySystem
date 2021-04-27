@@ -1,11 +1,13 @@
 package Controller.Librarian;
 
 import Controller.SceneManager;
+import Model.BorrowingRecord;
 import Model.Reader;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -15,8 +17,10 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class AllReadersController extends LibrarianController implements Initializable {
+public class AllReadersController extends BorrowingsController implements Initializable {
 
     @FXML
     private TableView<Reader> readersTableView;
@@ -26,7 +30,7 @@ public class AllReadersController extends LibrarianController implements Initial
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // if scene contains TableView with this id then map all columns in it and display all readers
-        if (readersTableView != null) {
+        if (readersTableView != null && searchComboBox != null) {
             this.mapColumnsOnReaderMethods(idCol, nameCol, phoneNumberCol, emailCol, addressCol);
             // inspiration https://stackoverflow.com/questions/25204068/how-do-i-point-a-propertyvaluefactory-to-a-value-of-a-map
             reservedBooksCol.setCellValueFactory(
@@ -38,6 +42,9 @@ public class AllReadersController extends LibrarianController implements Initial
             ArrayList<Reader> allReaders = SerializationPattern.getInstance().getSerializationObject().getAllReaders();
             // cast arraylist of all readers to observable list and display them in TableView
             readersTableView.setItems(FXCollections.observableArrayList(allReaders));
+
+            // set items to combobox
+            searchComboBox.setItems(FXCollections.observableArrayList("Name", "ID"));
         }
     }
 
@@ -58,7 +65,34 @@ public class AllReadersController extends LibrarianController implements Initial
         SceneManager.switchScene(event, SceneManager.EDIT_READER_SCENE, true);
     }
 
-    public void detailReader(MouseEvent event) {
+    public void detailReader() {
 
+    }
+
+    public void searchReader() {
+        // get all readers
+        ArrayList<Reader> allReaders = SerializationPattern.getInstance().getSerializationObject().getAllReaders();
+        // filtered readers
+        ObservableList<Reader> filteredReaders = FXCollections.observableArrayList();
+
+        // regex inspiration from https://www.w3schools.com/java/java_regex.asp
+        Matcher matcher;
+        Pattern pattern = Pattern.compile(tfSearch.getText(), Pattern.CASE_INSENSITIVE);
+
+        for (Reader reader : allReaders) {
+            if (this.getSearchFilter().equals("Name")) {
+                // check if reader name contains something from entered string
+                matcher = pattern.matcher(reader.getReadersCard().getReaderName());
+            } else {
+                // convert reader's ID to string and try to match with entered ID in search bar
+                matcher = pattern.matcher(String.valueOf(reader.getReadersCard().getId()));
+            }
+            // if entered string matches or contains value for current borrowing, then add this reader to filteredReaders
+            if (matcher.find()) {
+                filteredReaders.add(reader);
+            }
+        }
+        // display filtered readers in table view
+        readersTableView.setItems(filteredReaders);
     }
 }

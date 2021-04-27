@@ -28,11 +28,19 @@ public class BorrowingsController extends LibrarianController implements Initial
     @FXML
     private TableColumn<BorrowingRecord, String> dateCol, idCol, nameCol, phoneNumberCol, emailCol, borrowedBooksCol;
     @FXML
-    private ComboBox<String> searchComboBox;
+    ComboBox<String> searchComboBox;
     @FXML
-    private TextField tfSearch;
+    TextField tfSearch;
 
     private String searchFilter = "Name";
+
+    public String getSearchFilter() {
+        return searchFilter;
+    }
+
+    public void setSearchFilter(String searchFilter) {
+        this.searchFilter = searchFilter;
+    }
 
     // this method runs, when scene is loading
     @Override

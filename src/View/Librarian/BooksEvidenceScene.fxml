@@ -93,11 +93,6 @@
                         <Insets left="65.0" right="65.0" />
                     </GridPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#detailBookTitle" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #1873d3;" text="%detail_btn" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="22.0" />
-                            </font>
-                        </Button>
                   <Button mnemonicParsing="false" onMouseClicked="#editBookTitle" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #CC7722;" text="%edit_btn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />

@@ -130,15 +130,15 @@
                 </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
                <children>
-                  <Label text="Book copies: ">
+                  <Label text="%book_copies_label">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
                   <TableView fx:id="bookCopiesTableView" prefHeight="400.0" prefWidth="482.0">
                     <columns>
-                      <TableColumn fx:id="bookIdCol" prefWidth="274.0" text="Book ID" />
-                      <TableColumn fx:id="bookStatusCol" prefWidth="207.0" text="Status" />
+                      <TableColumn fx:id="bookIdCol" prefWidth="274.0" text="%book_id_col" />
+                      <TableColumn fx:id="bookStatusCol" prefWidth="207.0" text="%book_state_col" />
                     </columns>
                   </TableView>
                </children>
@@ -148,7 +148,7 @@
             </VBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#removeBookCopy" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #B22222;" text="%back_btn" textFill="WHITE">
+                  <Button mnemonicParsing="false" onMouseClicked="#removeBookCopy" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #B22222;" text="%remove_book_btn" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>

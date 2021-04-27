@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -30,7 +31,7 @@ public class LoginController implements Initializable {
     private TextField tfUserName;
 
     @FXML
-    private TextField tfPassword;
+    private PasswordField tfPassword;
 
     @FXML
     private TextField tfReaderId;
@@ -48,8 +49,14 @@ public class LoginController implements Initializable {
 
     // on mouse click check if user name and user password are right and login as a Librarian
     public void loginAsLibrarian(MouseEvent event) {
-        // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
-        SceneManager.switchScene(event, SceneManager.BORROWINGS_SCENE, true);
+        // check if user fill right data
+        if (tfUserName.getText().equals("Admin") && tfPassword.getText().equals("admin")) {
+            // parameter librarianSceneFlag has to be true, because we are switching to one of the librarian's scenes
+            SceneManager.switchScene(event, SceneManager.BORROWINGS_SCENE, true);
+        } else {
+            // show error popup, because user fill wrong login data
+            PopUps.showErrorPopUp("Error", "Wrong login data.");
+        }
     }
 
     // on mouse click check reader's ID and login as a reader

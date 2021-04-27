@@ -12,9 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginController implements Initializable {
@@ -52,16 +54,27 @@ public class LoginController implements Initializable {
 
     // on mouse click check reader's ID and login as a reader
     public void loginAsReader(MouseEvent event) {
-        // parameter librarianSceneFlag has to be false, because we are switching to one of the reader's scenes
-        ArrayList<Reader> allReaders = SerializationPattern.getInstance().getSerializationObject().getAllReaders();
-        for (Reader r : allReaders) {
-            if (r.getReadersCard().getId() == Integer.parseInt(tfReaderId.getText())){
-                SceneManager.currentReader = r;
-                SceneManager.switchScene(event, SceneManager.MY_BOOKS_SCENE, false);
-                return;
-            }
+        if (tfReaderId.getText().equals("")) {
+            PopUps.showErrorPopUp("Error", "You have to fill your Reader's ID before log in.");
+            return;
         }
-        PopUps.showErrorPopUp("Error", "Invalid reader ID");
+
+        try {
+            // parameter librarianSceneFlag has to be false, because we are switching to one of the reader's scenes
+            ArrayList<Reader> allReaders = SerializationPattern.getInstance().getSerializationObject().getAllReaders();
+            for (Reader r : allReaders) {
+                if (r.getReadersCard().getId() == Integer.parseInt(tfReaderId.getText())){
+                    SceneManager.currentReader = r;
+                    SceneManager.switchScene(event, SceneManager.MY_BOOKS_SCENE, false);
+                    return;
+                }
+            }
+            PopUps.showErrorPopUp("Error", "Invalid reader ID");
+        } catch (NumberFormatException e) {
+            // log exception info and show error popup
+            LOGGER.log(Level.SEVERE, e.getMessage());
+            PopUps.showErrorPopUp("Error", "Reader's ID is integer.");
+        }
     }
 
     // this method quit whole program

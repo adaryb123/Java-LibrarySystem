@@ -6,15 +6,20 @@ import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BorrowingsController extends LibrarianController implements Initializable {
 
@@ -22,6 +27,12 @@ public class BorrowingsController extends LibrarianController implements Initial
     private TableView<BorrowingRecord> borrowingsTableView;
     @FXML
     private TableColumn<BorrowingRecord, String> dateCol, idCol, nameCol, phoneNumberCol, emailCol, borrowedBooksCol;
+    @FXML
+    private ComboBox<String> searchComboBox;
+    @FXML
+    private TextField tfSearch;
+
+    private String searchFilter = "Name";
 
     // this method runs, when scene is loading
     @Override
@@ -59,6 +70,46 @@ public class BorrowingsController extends LibrarianController implements Initial
             // before setting items to borrowingsTableView, it casts allBorrowings arraylist to observable list
             borrowingsTableView.setItems(FXCollections.observableArrayList(allBorrowings));
         }
+
+        // if scene contains ComboBox with id searchComboBox, then add items
+        if (searchComboBox != null) {
+            searchComboBox.setItems(FXCollections.observableArrayList("ID", "Name"));
+        }
+    }
+
+    public void changeSearchFilter() {
+        // if user select any of ComboBox items, then change searchFilter
+        if (searchComboBox.getSelectionModel().getSelectedItem() != null) {
+            searchFilter = searchComboBox.getSelectionModel().getSelectedItem();
+        }
+    }
+
+    public void searchBorrowings() {
+        // get all borrowings
+        ArrayList<BorrowingRecord> allBorrowings = SerializationPattern.getInstance().getSerializationObject().getAllBorrowingRecords();
+        // filtered borrowings
+        ObservableList<BorrowingRecord> filteredBorrowings = FXCollections.observableArrayList();
+
+        // regex inspiration from https://www.w3schools.com/java/java_regex.asp
+        Matcher matcher;
+        Pattern pattern = Pattern.compile(tfSearch.getText(), Pattern.CASE_INSENSITIVE);
+
+        for (BorrowingRecord borrowingRecord : allBorrowings) {
+            if (searchFilter.equals("Name")) {
+                // if entered name matches reader's name in current borrowing record,
+                // then current borrowing record will be displayed in TableView
+                matcher = pattern.matcher(borrowingRecord.getReader().getReadersCard().getReaderName());
+            } else {
+                // convert reader's ID to string and try to match with entered ID in search bar
+                matcher = pattern.matcher(String.valueOf(borrowingRecord.getReader().getReadersCard().getId()));
+            }
+            // if entered string matches value for current borrowing, then add this borrowing to filteredBorrowings
+            if (matcher.find()) {
+                filteredBorrowings.add(borrowingRecord);
+            }
+        }
+
+        borrowingsTableView.setItems(filteredBorrowings);
     }
 
     public void createBorrowingScene(MouseEvent event) {

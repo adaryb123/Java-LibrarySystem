@@ -3,6 +3,7 @@ package Controller.Reader;
 import Controller.SceneManager;
 import Model.BookCopy;
 import Model.BookTitle;
+import Model.Reader;
 import Model.Review;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
@@ -11,16 +12,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SearchBooksController extends ReaderController implements Initializable {
@@ -39,7 +39,7 @@ public class SearchBooksController extends ReaderController implements Initializ
     private TextField searchTextField;
 
     @FXML
-    private ChoiceBox<String> categoryChoiceBox;
+    private ComboBox<String> categoryComboBox;
 
     @FXML
     void addReview(MouseEvent event) {
@@ -122,7 +122,7 @@ public class SearchBooksController extends ReaderController implements Initializ
         //clear text field
         searchTextField.setText("");
         //initialize choice box
-        categoryChoiceBox.getItems().addAll("Author name","Book title","Publisher");
+        categoryComboBox.getItems().addAll("Author name","Book title","Publisher");
         //initialize table view with all booktitles
         bookTitles = FXCollections.observableArrayList(SerializationPattern.getInstance().getSerializationObject().getAllBookTitles());
 
@@ -148,21 +148,36 @@ public class SearchBooksController extends ReaderController implements Initializ
             return;
         }
 
-        if (categoryChoiceBox.getSelectionModel().isEmpty()) {
+        if (categoryComboBox.getSelectionModel().isEmpty()) {
             PopUps.showErrorPopUp("No category selected", "Select category to search in.");
             return;
         }
 
         String searchText = searchTextField.getText();
-        String category = categoryChoiceBox.getValue();
+        String category = categoryComboBox.getValue();
         ArrayList<BookTitle> selectedBookTitles = new ArrayList<>();
-        for (BookTitle b : bookTitles){
-            if (category.equals("Author name") && b.getAuthorName().contains(searchText))
+
+        // regex inspiration from https://www.w3schools.com/java/java_regex.asp
+        Matcher matcher;
+        Pattern pattern = Pattern.compile(searchText, Pattern.CASE_INSENSITIVE);
+
+        for (BookTitle b : bookTitles) {
+            if (category.equals("Author name")) {
+                // check if author name contains something from entered string
+                matcher = pattern.matcher(b.getAuthorName());
+            }
+             else if (category.equals("Book title")) {
+                // check if book title contains something from entered string
+                matcher = pattern.matcher(b.getBookName());
+            }
+             else {
+                // check if publisher name contains something from entered string
+                matcher = pattern.matcher(b.getPublisherName());
+            }
+            // if entered string matches or contains value for current borrowing, then add this reader to filteredReaders
+            if (matcher.find()) {
                 selectedBookTitles.add(b);
-            else if (category.equals("Book title") && b.getBookName().contains(searchText))
-                selectedBookTitles.add(b);
-            else if (category.equals("Publisher") && b.getPublisherName().contains(searchText))
-                selectedBookTitles.add(b);
+            }
         }
 
         ObservableList<BookTitle> observableBookTitles = FXCollections.observableArrayList(selectedBookTitles);

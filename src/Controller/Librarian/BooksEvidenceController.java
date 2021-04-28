@@ -3,14 +3,18 @@ package Controller.Librarian;
 import Controller.SceneManager;
 import Model.BookCopy;
 import Model.BookTitle;
+import Model.Reader;
 import PopUps.PopUps;
 import Serialization.SerializationPattern;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -18,6 +22,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BooksEvidenceController extends LibrarianController implements Initializable {
 
@@ -30,6 +36,12 @@ public class BooksEvidenceController extends LibrarianController implements Init
     private TableColumn<BookTitle, String> authorCol, bookNameCol, publisherCol, reviewsNumCol, bookCopiesCol;
     @FXML
     private TableColumn<BookTitle, Integer> publishYearCol;
+
+    @FXML
+    private TextField tfSearch;
+
+    @FXML
+    private ComboBox<String> searchComboBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,6 +67,8 @@ public class BooksEvidenceController extends LibrarianController implements Init
             // cast allBookTitles arraylist to observable list and display them in TableView
             bookTitlesTableView.setItems(FXCollections.observableArrayList(allBookTitles));
         }
+
+        searchComboBox.getItems().addAll("Author name","Book title","Publisher");
     }
 
     // on button click switch to CreateBookTitleScene
@@ -101,7 +115,47 @@ public class BooksEvidenceController extends LibrarianController implements Init
         SceneManager.switchScene(event, SceneManager.EDIT_BOOK_TITLE_SCENE, true);
     }
 
-    public void detailBookTitle(MouseEvent event) {
+    public void searchTable(MouseEvent event) {
+        if (tfSearch.getText().isEmpty()) {
+            PopUps.showErrorPopUp("No search text", "Enter something in the search field.");
+            return;
+        }
 
+        if (searchComboBox.getSelectionModel().isEmpty()) {
+            PopUps.showErrorPopUp("No category selected", "Select category to search in.");
+            return;
+        }
+
+        String searchText = tfSearch.getText();
+        String category = searchComboBox.getValue();
+        ArrayList<BookTitle> allBookTitles = SerializationPattern.getInstance().getSerializationObject().getAllBookTitles();
+        ArrayList<BookTitle> selectedBookTitles = new ArrayList<>();
+
+        // regex inspiration from https://www.w3schools.com/java/java_regex.asp
+        Matcher matcher;
+        Pattern pattern = Pattern.compile(searchText, Pattern.CASE_INSENSITIVE);
+
+        for (BookTitle b : allBookTitles) {
+            if (category.equals("Author name")) {
+                // check if author name contains something from entered string
+                matcher = pattern.matcher(b.getAuthorName());
+            }
+            else if (category.equals("Book title")) {
+                // check if book title contains something from entered string
+                matcher = pattern.matcher(b.getBookName());
+            }
+            else {
+                // check if publisher name contains something from entered string
+                matcher = pattern.matcher(b.getPublisherName());
+            }
+            // if entered string matches or contains value for current borrowing, then add this reader to filteredReaders
+            if (matcher.find()) {
+                selectedBookTitles.add(b);
+            }
+        }
+
+        ObservableList<BookTitle> observableBookTitles = FXCollections.observableArrayList(selectedBookTitles);
+        bookTitlesTableView.setItems(observableBookTitles);
     }
+
 }

@@ -68,7 +68,7 @@ public abstract class SceneManager {
     // basic switching scene on mouse click
     public static void switchScene(MouseEvent event, String fileName) {
         // set localization and language by resourceBundle when creating a new FXMLLoader
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/" + fileName + ".fxml"), resourceBundle);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fileName + ".fxml"), resourceBundle);
         // get stage before makeSwitch method
         // otherwise we will have to make more overloading
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -78,7 +78,7 @@ public abstract class SceneManager {
     // this overloading is needed, when user is changing languages on login screen
     public static void switchScene(ActionEvent event, String fileName) {
         // set localization and language by resourceBundle when creating a new FXMLLoader
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/" + fileName + ".fxml"), resourceBundle);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fileName + ".fxml"), resourceBundle);
         // get stage before makeSwitch method
         // otherwise we will have to make more overloading
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -93,9 +93,9 @@ public abstract class SceneManager {
         // there is important difference in path, which goes to getResource method
         // localization and language will be set by resourceBundle when creating a new FXMLLoader
         if (librarianSceneFlag) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/librarian/" + fileName + ".fxml"), resourceBundle);
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/View/Librarian/" + fileName + ".fxml"), resourceBundle);
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/reader/" + fileName + ".fxml"), resourceBundle);
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/View/Reader/" + fileName + ".fxml"), resourceBundle);
         }
 
         // get stage before makeSwitch method
@@ -112,9 +112,9 @@ public abstract class SceneManager {
         // there is important difference in path, which goes to getResource method
         // localization and language will be set by resourceBundle when creating a new FXMLLoader
         if (librarianSceneFlag) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/librarian/" + fileName + ".fxml"), resourceBundle);
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/View/Librarian/" + fileName + ".fxml"), resourceBundle);
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("/view/reader/" + fileName + ".fxml"), resourceBundle);
+            fxmlLoader = new FXMLLoader(Main.class.getResource("/View/Reader/" + fileName + ".fxml"), resourceBundle);
         }
         try{
             Pane childPane = fxmlLoader.load();

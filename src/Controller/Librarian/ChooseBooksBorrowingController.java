@@ -164,6 +164,13 @@ public class ChooseBooksBorrowingController extends BorrowingsController impleme
         }
     }
 
+    public void goBack(MouseEvent event) {
+        for(BookCopy bookCopy : reservedBooksByReader) {
+            bookCopy.setStatus(BookCopy.Status.AVAILABLE);
+        }
+        this.createBorrowingScene(event);
+    }
+
     public void mapColumnsInTableView(
             TableColumn <BookCopy, String> idCol,
             TableColumn <BookCopy, String> authorCol,

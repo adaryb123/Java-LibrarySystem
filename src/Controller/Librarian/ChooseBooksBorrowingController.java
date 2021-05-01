@@ -117,6 +117,10 @@ public class ChooseBooksBorrowingController extends BorrowingsController impleme
             PopUps.showErrorPopUp("Error", "At least one book has to be selected for borrowing.");
             return;
         }
+        //set book status to borrowed
+        for (BookCopy b : reservedBooksByReader)
+            b.setStatus(BookCopy.Status.BORROWED);
+
         // get current date and create string from it
         Date currentDate = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
